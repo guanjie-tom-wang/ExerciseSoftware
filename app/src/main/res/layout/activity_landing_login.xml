@@ -7,11 +7,21 @@
     tools:context=".landing_login">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcomeBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/contacts"
+        android:layout_width="76dp"
+        android:layout_height="21dp"
+        android:text="Contacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBox" />
 </androidx.constraintlayout.widget.ConstraintLayout>
