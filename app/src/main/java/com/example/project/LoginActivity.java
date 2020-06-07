@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private FirebaseAuth mAuth;
-
+    private Button register;
     private ProgressDialog progressDialog;
 
     @Override
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login = findViewById(R.id.btn_login);
-
+        register = findViewById(R.id.btn_register);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
@@ -43,6 +43,13 @@ public class LoginActivity extends AppCompatActivity {
                 userLogin();
             }
         });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
+
     }
 
     private void userLogin() {
@@ -62,8 +69,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), landing_login.class));
                 }else{
+
                     Toast.makeText(LoginActivity.this, "One or more field is incorrect"
                     , Toast.LENGTH_SHORT).show();
                 }
