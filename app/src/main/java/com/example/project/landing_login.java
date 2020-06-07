@@ -22,17 +22,16 @@ public class landing_login extends AppCompatActivity {
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
 
-        username = getIntent().getExtras().getString("Value1");
-        tv.setText("Welcome "+username+"!");
+        tv.setText("Welcome!");
 
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i=new Intent(landing_login.this,contacts.class);
+                Intent i=new Intent(landing_login.this,MainActivity.class);
                     startActivity(i);
                     finish();
                 }
-            }
-        });
+            });
+        }
     }
-}
+
