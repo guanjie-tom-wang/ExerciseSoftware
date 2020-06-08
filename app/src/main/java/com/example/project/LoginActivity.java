@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button register;
     private ProgressDialog progressDialog;
+    private Button Update;
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.btn_login);
         register = findViewById(R.id.btn_register);
+        Update = findViewById(R.id.Update);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
@@ -47,6 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
+        Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Update.class));
             }
         });
 
