@@ -96,4 +96,69 @@ public class UpdateTest {
         onView(withId(R.id.Update)).perform(click());
         onView(withId(R.id.errorInfo)).check(matches(withText(containsString("- Invalid height!"))));
     }
+    @Test
+    public void testInputNotInDatabase(){
+        onView(withId(R.id.username)).perform(typeText("New User"));
+        onView(withId(R.id.email)).perform(typeText("abc@mail.com"));
+        onView(withId(R.id.age)).perform(typeText("18"));
+        onView(withId(R.id.password)).perform(typeText("B00761972"));
+        onView(withId(R.id.password)).perform(closeSoftKeyboard());
+        onView(withId(R.id.weight)).perform(typeText("140"));
+        onView(withId(R.id.weight)).perform(closeSoftKeyboard());
+        onView(withId(R.id.height)).perform(typeText("180"));
+        onView(withId(R.id.height)).perform(closeSoftKeyboard());
+        onView(withId(R.id.role)).perform(typeText("Athlete"));
+        onView(withId(R.id.role)).perform(closeSoftKeyboard());
+        onView(withId(R.id.Update)).perform(click());
+        onView(withId(R.id.errorInfo)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+    }
+    @Test
+    public void testInputInDatabase(){
+        onView(withId(R.id.username)).perform(typeText("wgj"));
+        onView(withId(R.id.email)).perform(typeText("dalsdafasd@q.com"));
+        onView(withId(R.id.age)).perform(typeText("18"));
+        onView(withId(R.id.password)).perform(typeText("B00761972"));
+        onView(withId(R.id.password)).perform(closeSoftKeyboard());
+        onView(withId(R.id.weight)).perform(typeText("140"));
+        onView(withId(R.id.weight)).perform(closeSoftKeyboard());
+        onView(withId(R.id.height)).perform(typeText("180"));
+        onView(withId(R.id.height)).perform(closeSoftKeyboard());
+        onView(withId(R.id.role)).perform(typeText("Athlete"));
+        onView(withId(R.id.role)).perform(closeSoftKeyboard());
+        onView(withId(R.id.Update)).perform(click());
+        onView(withId(R.id.errorInfo)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+    }
+    @Test
+    public void testInputWithWrongUserName(){
+        onView(withId(R.id.username)).perform(typeText("wfasdfagj"));
+        onView(withId(R.id.email)).perform(typeText("dalsdafasd@q.com"));
+        onView(withId(R.id.age)).perform(typeText("18"));
+        onView(withId(R.id.password)).perform(typeText("B00761972"));
+        onView(withId(R.id.password)).perform(closeSoftKeyboard());
+        onView(withId(R.id.weight)).perform(typeText("140"));
+        onView(withId(R.id.weight)).perform(closeSoftKeyboard());
+        onView(withId(R.id.height)).perform(typeText("180"));
+        onView(withId(R.id.height)).perform(closeSoftKeyboard());
+        onView(withId(R.id.role)).perform(typeText("Athlete"));
+        onView(withId(R.id.role)).perform(closeSoftKeyboard());
+        onView(withId(R.id.Update)).perform(click());
+        onView(withId(R.id.errorInfo)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+    }
+    @Test
+    public void testInputWithWrongEmailAddress(){
+        onView(withId(R.id.username)).perform(typeText("wgj"));
+        onView(withId(R.id.email)).perform(typeText("sdasd@q.com"));
+        onView(withId(R.id.age)).perform(typeText("18"));
+        onView(withId(R.id.password)).perform(typeText("B00761972"));
+        onView(withId(R.id.password)).perform(closeSoftKeyboard());
+        onView(withId(R.id.weight)).perform(typeText("140"));
+        onView(withId(R.id.weight)).perform(closeSoftKeyboard());
+        onView(withId(R.id.height)).perform(typeText("180"));
+        onView(withId(R.id.height)).perform(closeSoftKeyboard());
+        onView(withId(R.id.role)).perform(typeText("Athlete"));
+        onView(withId(R.id.role)).perform(closeSoftKeyboard());
+        onView(withId(R.id.Update)).perform(click());
+        onView(withId(R.id.errorInfo)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+    }
+
 }
