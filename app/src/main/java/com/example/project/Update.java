@@ -145,6 +145,8 @@ public class Update extends AppCompatActivity {
                                         "", email_address + "", passText + "", roleText + "", Integer.parseInt(heightNum),
                                         Integer.parseInt(weightNum), Integer.parseInt(ageNum));
                                 ref.set(userinfo);
+                                //update the auth information 
+                                RegisterUser.getCurrentUser().updatePassword(passText);
                                 Toast.makeText(Update.this, "Update Successful", Toast.LENGTH_LONG).show();//tell user update successful
                             } else {
                                 Toast.makeText(Update.this, "Enter correct email address", Toast.LENGTH_LONG).show();
