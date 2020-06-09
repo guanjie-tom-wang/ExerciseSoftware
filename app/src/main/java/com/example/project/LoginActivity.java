@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    //query the database, find the user's username according to email address entered.
                     Query query= db.collection("Users").whereEqualTo("emailAddress",uName);
                     query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                    String user_name = (String) document.getData().get("username");
                                     progressDialog.dismiss();
+                                    //send the username to other activities.
                                     login.putExtra("User_Name",user_name);
                                     startActivity(login);
                                 }
