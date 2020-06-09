@@ -88,7 +88,7 @@ public class Register extends AppCompatActivity {
         final String phoneNumber = phone.getText().toString();
         final String addressText = address.getText().toString();
         final String email_address = email.getText().toString();
-
+        final String friend_request_from="";
         String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
         String error = "";
@@ -129,8 +129,9 @@ public class Register extends AppCompatActivity {
                                         DocumentReference ref= db.collection("Users").document(username+"");
                                         User userinfo;
 
+
                                         userinfo = new User(username+"",phoneNumber+"",addressText+"," +
-                                                "", email_address+"",passText+"", roleText+"",Integer.parseInt(heightNum),
+                                                "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
                                                 Integer.parseInt(weightNum),Integer.parseInt(ageNum));
                                         ref.set(userinfo);
                                         Toast.makeText(Register.this, "Register successfully", Toast.LENGTH_SHORT).show();
