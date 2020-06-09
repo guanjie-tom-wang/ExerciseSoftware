@@ -16,19 +16,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private EditText username;
     private EditText password;
     private Button login;
     private FirebaseAuth mAuth;
     private Button register;
     private ProgressDialog progressDialog;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
@@ -61,9 +66,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
-        String uName = username.getText().toString();
+        final String uName = username.getText().toString();
         String uPassword = password.getText().toString();
-
+        final Intent login=new Intent(LoginActivity.this, landing_login.class);
         if(uName.length() == 0 || uPassword.length() == 0){
             Toast.makeText(this, "One or more of the field is Empty",
                     Toast.LENGTH_SHORT).show();
@@ -76,8 +81,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    progressDialog.dismiss();
-                    startActivity(new Intent(getApplicationContext(), landing_login.class));
+                    Query query= db.collection("Users").whereEqualTo("emailAddress",uName);
+                    query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                   String user_name = (String) document.getData().get("username");
+                                    progressDialog.dismiss();
+                                    login.putExtra("User_Name",user_name);
+                                    startActivity(login);
+                                }
+                            } else {
+                                Log.d(TAG, "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+
                 }else{
 
                     Toast.makeText(LoginActivity.this, "One or more field is incorrect"

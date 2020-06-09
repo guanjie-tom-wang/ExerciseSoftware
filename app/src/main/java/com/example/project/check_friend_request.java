@@ -57,7 +57,8 @@ public class check_friend_request extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_friend_request);
-
+        Intent intent = getIntent();
+        final String user_name = intent.getStringExtra("User_Name");
         db = FirebaseFirestore.getInstance();
         RegisterUser = FirebaseAuth.getInstance();
         request_message = findViewById(R.id.message);
@@ -65,25 +66,26 @@ public class check_friend_request extends AppCompatActivity {
         b_decline=findViewById(R.id.button_decline);
         b_to_main=findViewById(R.id.back_from_request);
         mAuth = FirebaseAuth.getInstance();
-   
 
-        DocumentReference noteRef= db.collection("Users").document("Rui");
+
+        assert user_name != null;
+        DocumentReference noteRef= db.collection("Users").document(user_name);
 
         noteRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String curr_user=documentSnapshot.getString("username");
+
                         request_from= documentSnapshot.getString("friend_request_from");
                         if(!request_from.isEmpty()) {
                             b_accept.setVisibility(View.VISIBLE);
                             b_decline.setVisibility(View.VISIBLE);
-                            request_message.setText("Hello " + curr_user + ", You have a new friend request from: " + request_from + ".");
+                            request_message.setText("Hello " + user_name + ", You have a new friend request from: " + request_from + ".");
 
                         }
                         else{
 
-                            request_message.setText("Hello " + curr_user + ", You have no friend request now. " );
+                            request_message.setText("Hello " + user_name + ", You have no friend request now. " );
 
                         }
 
@@ -93,7 +95,7 @@ public class check_friend_request extends AppCompatActivity {
         b_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onclick_accept();
+                onclick_accept(user_name);
                 Intent i=new Intent(check_friend_request.this,landing_login.class);
                 startActivity(i);
                 finish();
@@ -102,8 +104,8 @@ public class check_friend_request extends AppCompatActivity {
         b_decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onclick_decline();
-                onclick_accept();
+                onclick_decline(user_name);
+                onclick_accept(user_name);
                 Intent i=new Intent(check_friend_request.this,landing_login.class);
                 startActivity(i);
                 finish();
@@ -119,8 +121,8 @@ public class check_friend_request extends AppCompatActivity {
         });
     }
 
-    public void onclick_accept(){
-        DocumentReference update=FirebaseFirestore.getInstance().collection("Users").document("Rui");
+    public void onclick_accept(String user_name){
+        DocumentReference update=FirebaseFirestore.getInstance().collection("Users").document(user_name);
         Map<String, Object> map= new HashMap<>();
         map.put("friend_request_from", "");
 
@@ -134,8 +136,8 @@ public class check_friend_request extends AppCompatActivity {
                 });
 
     }
-    public void onclick_decline(){
-        DocumentReference update=FirebaseFirestore.getInstance().collection("User").document("Rui");
+    public void onclick_decline(String user_name){
+        DocumentReference update=FirebaseFirestore.getInstance().collection("User").document(user_name);
         Map<String, Object> map= new HashMap<>();
         map.put("friend_request_from", "");
 
