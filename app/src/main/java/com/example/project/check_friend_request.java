@@ -46,6 +46,7 @@ public class check_friend_request extends AppCompatActivity {
     private Button b_accept;
     private Button b_decline;
 
+    
     //button to go back to main page
     private Button b_to_main;
     private FirebaseAuth mAuth;
