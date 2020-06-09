@@ -67,7 +67,7 @@ public class check_friend_request extends AppCompatActivity {
         b_to_main=findViewById(R.id.back_from_request);
         mAuth = FirebaseAuth.getInstance();
 
-
+        final Intent i=new Intent(check_friend_request.this,landing_login.class);
         assert user_name != null;
         DocumentReference noteRef= db.collection("Users").document(user_name);
 
@@ -96,7 +96,7 @@ public class check_friend_request extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onclick_accept(user_name);
-                Intent i=new Intent(check_friend_request.this,landing_login.class);
+                i.putExtra("User_Name",user_name);
                 startActivity(i);
                 finish();
             }
@@ -106,7 +106,7 @@ public class check_friend_request extends AppCompatActivity {
             public void onClick(View view) {
                 onclick_decline(user_name);
                 onclick_accept(user_name);
-                Intent i=new Intent(check_friend_request.this,landing_login.class);
+                i.putExtra("User_Name",user_name);
                 startActivity(i);
                 finish();
             }
@@ -114,8 +114,9 @@ public class check_friend_request extends AppCompatActivity {
         b_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(check_friend_request.this,landing_login.class);
+                i.putExtra("User_Name",user_name);
                 startActivity(i);
+
                 finish();
             }
         });
