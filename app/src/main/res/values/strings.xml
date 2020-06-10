@@ -6,7 +6,7 @@
     <string name="tel_number">Tel number</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
-    <string name="sign_up">Sign up</string>
+    <string name="Sign_up">Sign up</string>
     <string name="go_to_register">Do not have an account yet?</string>
     <string name="go_to_login">Already have an account?</string>
     <string name="Update">Update</string>
@@ -17,4 +17,6 @@
     <string name="height">Height</string>
     <string name="log_in">Log in</string>
     <string name="email_address">Email Address</string>
+    <string name="sign_up">Sign up</string>
+    <string name="update">Update</string>
 </resources>

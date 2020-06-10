@@ -74,7 +74,7 @@ public class Update extends AppCompatActivity {
             }
         });
         //back to the main page
-        final Intent intent=new Intent(this,MainActivity.class);
+        final Intent intent=new Intent(this,LoginActivity.class);
         return_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +95,7 @@ public class Update extends AppCompatActivity {
         final String phoneNumber = phone.getText().toString();
         final String addressText = address.getText().toString();
         final String email_address = email.getText().toString();
+        final String friend_request_from="";
         //check whether inputs are meet requirements
         String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
@@ -141,9 +142,9 @@ public class Update extends AppCompatActivity {
                             if (email_address.equals(str9)) {
                                 //create a new user object for this user and update information use latest input
                                 User userinfo;
-                                userinfo = new User(username + "", phoneNumber + "", addressText + "," +
-                                        "", email_address + "", passText + "", roleText + "", Integer.parseInt(heightNum),
-                                        Integer.parseInt(weightNum), Integer.parseInt(ageNum));
+                                userinfo = new User(username+"",phoneNumber+"",addressText+"," +
+                                        "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
+                                        Integer.parseInt(weightNum),Integer.parseInt(ageNum));
                                 ref.set(userinfo);
                                 //update the auth information 
                                 RegisterUser.getCurrentUser().updatePassword(passText);
