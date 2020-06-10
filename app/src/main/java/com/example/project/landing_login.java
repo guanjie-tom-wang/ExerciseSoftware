@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
-import java.util.regex.Pattern;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
@@ -19,17 +18,21 @@ public class landing_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_login);
+
+        Intent intent = getIntent();
+        final String user_name = intent.getStringExtra("User_Name");
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
 
-        tv.setText("Welcome!");
+        tv.setText("Welcome "+user_name+"!");
 
+        final Intent contact=new Intent(landing_login.this, check_friend_request.class);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i=new Intent(landing_login.this,MainActivity.class);
-                    startActivity(i);
-                    finish();
+                contact.putExtra("User_Name",user_name);
+                startActivity(contact);
+                finish();
                 }
             });
         }
