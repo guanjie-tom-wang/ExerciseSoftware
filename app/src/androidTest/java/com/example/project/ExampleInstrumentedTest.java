@@ -2,6 +2,7 @@ package com.example.project;
 
 import android.content.Context;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -131,5 +132,7 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.password)).check(matches(withHint("Password")));
         onView(withId(R.id.address)).check(matches(withHint("Address")));
     }
+
+
 
 }

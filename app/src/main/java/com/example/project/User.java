@@ -25,16 +25,18 @@ public class User extends FirebaseUser {
     public String emailAddress;
     public String password;
     public String type;
+    public String friend_request_from;
     public int height;
     public int weight;
     public int age;
-    public User(String Un,String TN,String HAD,String ED,String pw,String t,int h,int w,int a){
+    public User(String Un, String TN, String HAD, String ED, String pw, String t, String f, int h, int w, int a){
         username=Un;
         TelNumber=TN;
         homeAddress=HAD;
         emailAddress=ED;
         password=pw;
         type=t;
+        friend_request_from=f;
         height=h;
         weight=w;
         age=a;
