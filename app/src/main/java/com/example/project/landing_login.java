@@ -11,7 +11,6 @@ import android.widget.Button;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    TextView user_tv;
     Button btn;
     String username;
     String email;

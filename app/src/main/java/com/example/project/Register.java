@@ -23,6 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Register extends AppCompatActivity {
+
+    // Set all objects that will be used
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth RegisterUser = FirebaseAuth.getInstance();
     private TextView error_msg;
@@ -41,6 +43,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Initialize variables
         db = FirebaseFirestore.getInstance();
         RegisterUser = FirebaseAuth.getInstance();
         error_msg = findViewById(R.id.errorInfo);
@@ -56,6 +59,7 @@ public class Register extends AppCompatActivity {
         Button register_button = findViewById(R.id.register);
         TextView return_to_main = findViewById(R.id.log);
 
+        // When user click the button, start register
         register_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,11 +78,12 @@ public class Register extends AppCompatActivity {
 
     }
 
+    // This method is used to validate the information user enters when registering
     public void validate() {
 
         FirebaseApp.initializeApp(this);
 
-
+        // Get the information user enters
         final String username = usr.getText().toString();
         final String roleText = role.getText().toString();
         final String passText = pass.getText().toString();
@@ -92,6 +97,11 @@ public class Register extends AppCompatActivity {
         String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
         String error = "";
+
+        /* Check the input. Int field can only accept digits, username and email follow the
+         * instruction in A2. Home address and tel number can be empty.
+         */
+
         if ( passText.isEmpty()) {
             error = error+"- Invalid password!\n";
         }
@@ -115,27 +125,34 @@ public class Register extends AppCompatActivity {
             error = error + "- Invalid email format!\n";
         }
 
+
+        // If there is an error, show the message
         if(!error.isEmpty()) {
             error_msg.setVisibility(View.VISIBLE);
             error_msg.setText(error);
             error_msg.setTextColor(Color.RED);
         }
         else {
+            // If user register successfully, add his or her information into Firestore
             RegisterUser.createUserWithEmailAndPassword(email_address+"", passText+"")
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
+                                        error_msg.setText("");
                                         DocumentReference ref= db.collection("Users").document(username+"");
                                         User userinfo;
-
 
                                         userinfo = new User(username+"",phoneNumber+"",addressText+"," +
                                                 "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
                                                 Integer.parseInt(weightNum),Integer.parseInt(ageNum));
                                         ref.set(userinfo);
+
+                                        // Successful Message
                                         Toast.makeText(Register.this, "Register successfully", Toast.LENGTH_SHORT).show();
                                     }else{
+
+                                        // Error message
                                         Toast.makeText(Register.this, "Failed to create user:"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                     }
                                 }

@@ -42,6 +42,9 @@ public class User extends FirebaseUser {
         age=a;
     }
 
+    public User(String s, String s1, String s2, String s3, String s4, String s5, int parseInt, int parseInt1, int parseInt2) {
+    }
+
     @NonNull
     @Override
     public String getUid() {
