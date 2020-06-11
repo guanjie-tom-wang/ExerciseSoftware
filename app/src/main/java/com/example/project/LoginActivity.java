@@ -27,6 +27,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+
+    // All instances we need
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private EditText username;
@@ -44,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_login);
-
+        // Initialize instances
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login = findViewById(R.id.btn_login);
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
+        // Get user name from the textview
         final String uName = username.getText().toString();
         String uPassword = password.getText().toString();
         final Intent login=new Intent(LoginActivity.this, landing_login.class);
