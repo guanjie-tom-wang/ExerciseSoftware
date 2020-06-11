@@ -25,6 +25,12 @@ stages:
   - build
   - test
 
+intDebug:
+  stage: build
+  script:
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+  tags:
+    - dalfcs_gitlab_docker_ci
 
 assembleDebug:
   stage: build
