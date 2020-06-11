@@ -1,26 +1,6 @@
-
-
 package com.example.project;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
-import android.os.Parcel;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.android.gms.internal.firebase_auth.zzff;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUserMetadata;
-import com.google.firebase.auth.MultiFactor;
-import com.google.firebase.auth.MultiFactorInfo;
-import com.google.firebase.auth.UserInfo;
-
-import java.util.List;
-
-@SuppressLint("ParcelCreator")
-public class User extends FirebaseUser {
+public class User {
     public String username;
     public String TelNumber;
     public String homeAddress;
@@ -31,142 +11,78 @@ public class User extends FirebaseUser {
     public int height;
     public int weight;
     public int age;
-    public User(String Un, String TN, String HAD, String ED, String pw, String t, String f, int h, int w, int a){
+    public User(String Un,String TN,String HAD,String ED,String pw,String t, String f,int h,int w,int a){
         username=Un;
         TelNumber=TN;
         homeAddress=HAD;
         emailAddress=ED;
         password=pw;
-        type=t;
         friend_request_from=f;
+        type=t;
         height=h;
         weight=w;
         age=a;
     }
-
-    @NonNull
-    @Override
-    public String getUid() {
-        return null;
+    //getter
+    public String getFriend_request_from(User u1){
+        return friend_request_from;
     }
-
-    @NonNull
-    @Override
-    public String getProviderId() {
-        return null;
+    public String getUsername(User u1){
+        return username;
     }
-
-    @Override
-    public boolean isAnonymous() {
-        return false;
+    public String getTelNumber(User u1){
+        return TelNumber;
     }
-
-    @Nullable
-    @Override
-    public List<String> zza() {
-        return null;
+    public String getHomeAddress(User u1){
+        return homeAddress;
     }
-
-    @NonNull
-    @Override
-    public List<? extends UserInfo> getProviderData() {
-        return null;
+    public String getEmailAddress(User u1){
+        return emailAddress;
     }
-
-    @NonNull
-    @Override
-    public FirebaseUser zza(@NonNull List<? extends UserInfo> list) {
-        return null;
+    public String getPassword(User u1){
+        return password;
     }
-
-    @Override
-    public FirebaseUser zzb() {
-        return null;
+    public String getType(User u1){
+        return type;
     }
-
-    @NonNull
-    @Override
-    public FirebaseApp zzc() {
-        return null;
+    public int getHeight(User u1){
+        return height;
     }
-
-    @Nullable
-    @Override
-    public String getDisplayName() {
-        return null;
+    public int getWeight(User u1){
+        return weight;
     }
-
-    @Nullable
-    @Override
-    public Uri getPhotoUrl() {
-        return null;
+    public int getAge(User u1){
+        return age;
     }
-
-    @Nullable
-    @Override
-    public String getEmail() {
-        return null;
+    //setter
+    public void setFriend_request_from(String f){
+        friend_request_from=f;
     }
-
-    @Nullable
-    @Override
-    public String getPhoneNumber() {
-        return null;
+    public void setUsername(String un){
+        username=un;
     }
-
-    @Override
-    public boolean isEmailVerified() {
-        return false;
+    public void setTelNumber(String tn){
+        TelNumber=tn;
     }
-
-    @Nullable
-    @Override
-    public String zzd() {
-        return null;
+    public void setEmailAddress(String ed){
+        emailAddress=ed;
     }
-
-    @NonNull
-    @Override
-    public zzff zze() {
-        return null;
+    public void setHomeAddress(String hw){
+        homeAddress=hw;
     }
-
-    @Override
-    public void zza(@NonNull zzff zzff) {
-
+    public void setPassword(String p){
+        password=p;
     }
-
-    @NonNull
-    @Override
-    public String zzf() {
-        return null;
+    public void setType(String t){
+        type=t;
     }
-
-    @NonNull
-    @Override
-    public String zzg() {
-        return null;
+    public void setHeight(int h){
+        height=h;
     }
-
-    @Nullable
-    @Override
-    public FirebaseUserMetadata getMetadata() {
-        return null;
+    public void setWeight(int w){
+        weight=w;
     }
-
-    @NonNull
-    @Override
-    public MultiFactor getMultiFactor() {
-        return null;
-    }
-
-    @Override
-    public void zzb(List<MultiFactorInfo> list) {
-
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
+    public void setAge(int a){
+        age=a;
     }
 }

@@ -16,17 +16,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class Register extends AppCompatActivity {
-
-    // Set all objects that will be used
+public class Update extends AppCompatActivity {
+    //get the FirebaseFirestore instance
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth RegisterUser = FirebaseAuth.getInstance();
+    //create variable to get inputs which are from andriod app page
     private TextView error_msg;
     private EditText usr;
     private EditText email;
@@ -37,15 +37,16 @@ public class Register extends AppCompatActivity {
     private EditText role;
     private EditText phone;
     private EditText address;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        // Initialize variables
+        setContentView(R.layout.activity_update);
+        //make alert user to input right things
+        Toast.makeText(Update.this,"Please fill all of blanks and make sure type correct email address and user name",Toast.LENGTH_LONG).show();
+        //initialize database
         db = FirebaseFirestore.getInstance();
         RegisterUser = FirebaseAuth.getInstance();
+        //get inputs from app page
         error_msg = findViewById(R.id.errorInfo);
         phone = findViewById(R.id.telnumber);
         address = findViewById(R.id.address);
@@ -56,17 +57,16 @@ public class Register extends AppCompatActivity {
         weight = findViewById(R.id.weight);
         height = findViewById(R.id.height);
         role = findViewById(R.id.role);
-        Button register_button = findViewById(R.id.register);
+        Button update = findViewById(R.id.Update);
         TextView return_to_main = findViewById(R.id.log);
-
-        // When user click the button, start register
-        register_button.setOnClickListener(new View.OnClickListener(){
+        //call update() method for update database information
+        update.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                validate();
+                update();
             }
-
         });
+        //back to the main page
         final Intent intent=new Intent(this,LoginActivity.class);
         return_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +75,10 @@ public class Register extends AppCompatActivity {
                 finish();
             }
         });
-
     }
-
-    // This method is used to validate the information user enters when registering
-    public void validate() {
-
+    public void update() {
         FirebaseApp.initializeApp(this);
-
-        // Get the information user enters
+        //convert all inputs to string for next step
         final String username = usr.getText().toString();
         final String roleText = role.getText().toString();
         final String passText = pass.getText().toString();
@@ -94,30 +89,26 @@ public class Register extends AppCompatActivity {
         final String addressText = address.getText().toString();
         final String email_address = email.getText().toString();
         final String friend_request_from="";
+        //check whether inputs are meet requirements
         String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
         String error = "";
-
-        /* Check the input. Int field can only accept digits, username and email follow the
-         * instruction in A2. Home address and tel number can be empty.
-         */
-
-        if ( passText.isEmpty()) {
-            error = error+"- Invalid password!\n";
+        if (passText.isEmpty()) {
+            error = error + "- Invalid password!\n";
         }
-        if( roleText.isEmpty() ){
+        if (roleText.isEmpty()) {
             error = error + "- Invalid role!\n";
         }
-        if(!ageNum.matches((regex_digit))){
+        if (!ageNum.matches((regex_digit))) {
             error = error + "- Invalid age!\n";
         }
-        if(!weightNum.matches((regex_digit))){
+        if (!weightNum.matches((regex_digit))) {
             error = error + "- Invalid weight!\n";
         }
-        if(!heightNum.matches((regex_digit))){
+        if (!heightNum.matches((regex_digit))) {
             error = error + "- Invalid height!\n";
         }
-        if ( username.isEmpty() || username.charAt(0)== ' ' || username.charAt(username.length() - 1) == ' ') {
+        if (username.isEmpty() || username.charAt(0) == ' ' || username.charAt(username.length() - 1) == ' ') {
             error = error + "- Invalid username!\n";
 
         }
@@ -125,44 +116,42 @@ public class Register extends AppCompatActivity {
             error = error + "- Invalid email format!\n";
         }
 
-
-        // If there is an error, show the message
-        if(!error.isEmpty()) {
+        if (!error.isEmpty()) {
             error_msg.setVisibility(View.VISIBLE);
             error_msg.setText(error);
             error_msg.setTextColor(Color.RED);
-        }
-        else {
-            // If user register successfully, add his or her information into Firestore
-            RegisterUser.createUserWithEmailAndPassword(email_address+"", passText+"")
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()) {
-                                        error_msg.setText("");
-                                        DocumentReference ref= db.collection("Users").document(username+"");
-                                        User userinfo;
-
-
-                                        userinfo = new User(username+"",phoneNumber+"",addressText+"," +
-                                                "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
-                                                Integer.parseInt(weightNum),Integer.parseInt(ageNum));
-                                        ref.set(userinfo);
-
-                                        // Successful Message
-                                        Toast.makeText(Register.this, "Register successfully", Toast.LENGTH_SHORT).show();
-                                    }else{
-
-                                        // Error message
-                                        Toast.makeText(Register.this, "Failed to create user:"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+        } else {
+            //if it meet all the requirement
+            DocumentReference ref = db.collection("Users").document(username + "");// to locate the special position of database for update
+            //addOnCompleteListener--- check if this user is registered in the database and check if input email address and username are same as old
+            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot result = task.getResult();// get the all value for this user
+                        DocumentReference ref = db.collection("Users").document(username + "");
+                        if (result != null && result.getString("emailAddress")!=null) {
+                            String str9 = result.getString("emailAddress");
+                            if (email_address.equals(str9)) {
+                                //create a new user object for this user and update information use latest input
+                                User userinfo;
+                                userinfo = new User(username+"",phoneNumber+"",addressText+"," +
+                                        "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
+                                        Integer.parseInt(weightNum),Integer.parseInt(ageNum));
+                                ref.set(userinfo);
+                                //update the auth information 
+                                RegisterUser.getCurrentUser().updatePassword(passText);
+                                Toast.makeText(Update.this, "Update Successful", Toast.LENGTH_LONG).show();//tell user update successful
+                            } else {
+                                Toast.makeText(Update.this, "Enter correct email address", Toast.LENGTH_LONG).show();
                             }
-                    );
+                        }
+                        else {
+                            Toast.makeText(Update.this, "Please register first", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            });
         }
     }
-
 }
-
-
-
