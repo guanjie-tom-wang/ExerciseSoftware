@@ -24,10 +24,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import android.util.Log;
-
 
 
 
@@ -49,12 +48,11 @@ public class search_and_send_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_friend_request);
         db = FirebaseFirestore.getInstance();
-
         input_email = findViewById(R.id.addEmail1);
         a_add = findViewById(R.id.button3);
         a_check = findViewById(R.id.button4);
 
-        Boolean email_checking;
+
 
 
         a_check.setOnClickListener(new View.OnClickListener() {
@@ -80,28 +78,35 @@ public class search_and_send_page extends AppCompatActivity {
         }
         else {
             noteRef = db.collection("Users");
+            //query the database, find the user's username according to email address entered.
             Query query = noteRef.whereEqualTo("emailAddress", input_email.getText().toString());
-            query.get().addon
+
             if (query == null) {
                 Toast.makeText(search_and_send_page.this, "there is no email in your group, please input", Toast.LENGTH_LONG).show();
             } else {
                 check_email=true;
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            //get the username from email
+                            for (QueryDocumentSnapshot document : task.getResult()) {
 
-                Toast.makeText(search_and_send_page.this, "confirm:" + query, Toast.LENGTH_LONG).show();
+                                username_get = (String) document.getData().get("username");
+                                Toast.makeText(search_and_send_page.this, "confirm:" +username_get , Toast.LENGTH_LONG).show();
 
 
-            }
+                            }
+
+                        }
         }
+        });
 
-
-
-        }
-
-
+}}}
 
     public void send_request(){
         if( check_email) {
-            DocumentReference ref = db.collection("Users").document("");
+            DocumentReference ref = db.collection("Users").document(username_get);
             ref.update("friend_request_from", input_email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
