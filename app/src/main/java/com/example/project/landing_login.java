@@ -27,7 +27,7 @@ public class landing_login extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i=new Intent(landing_login.this,MainActivity.class);
+                Intent i=new Intent(landing_login.this,check_friend_request.class);
                     startActivity(i);
                     finish();
                 }
