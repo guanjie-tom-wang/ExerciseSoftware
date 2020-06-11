@@ -11,9 +11,8 @@ import android.widget.Button;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    Button btn;
-    String username;
-    String email;
+    Button btn, add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +22,7 @@ public class landing_login extends AppCompatActivity {
         final String user_name = intent.getStringExtra("User_Name");
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
+        add = findViewById(R.id.add);
 
         tv.setText("Welcome "+user_name+"!");
 
@@ -33,8 +33,19 @@ public class landing_login extends AppCompatActivity {
                 contact.putExtra("User_Name",user_name);
                 startActivity(contact);
                 finish();
-                }
-            });
-        }
+            }
+        });
+
+        final Intent addFreinds=new Intent(landing_login.this, search_and_send_page.class);
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                addFreinds.putExtra("User_Name",user_name);
+                startActivity(addFreinds);
+                finish();
+            }
+        });
+
+    }
     }
 

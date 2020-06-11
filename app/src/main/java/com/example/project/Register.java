@@ -143,6 +143,7 @@ public class Register extends AppCompatActivity {
                                         DocumentReference ref= db.collection("Users").document(username+"");
                                         User userinfo;
 
+
                                         userinfo = new User(username+"",phoneNumber+"",addressText+"," +
                                                 "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
                                                 Integer.parseInt(weightNum),Integer.parseInt(ageNum));

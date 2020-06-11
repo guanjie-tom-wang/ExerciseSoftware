@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -97,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                   String user_name = (String) document.getData().get("username");
+                                    String user_name = (String) document.getData().get("username");
                                     progressDialog.dismiss();
                                     //send the username to other activities.
                                     login.putExtra("User_Name",user_name);
@@ -112,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     Toast.makeText(LoginActivity.this, "One or more field is incorrect"
-                    , Toast.LENGTH_SHORT).show();
+                            , Toast.LENGTH_SHORT).show();
                 }
             }
         });
