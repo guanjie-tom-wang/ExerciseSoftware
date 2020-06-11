@@ -95,7 +95,6 @@ public class check_friend_request extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onclick_decline(user_name);
-                onclick_accept(user_name);
                 i.putExtra("User_Name",user_name);
                 startActivity(i);
                 finish();
