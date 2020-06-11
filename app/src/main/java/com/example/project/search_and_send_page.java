@@ -30,8 +30,7 @@ public class search_and_send_page extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private  CollectionReference noteRef;
-    private Button a_add;
-    private Button a_check;
+    private Button a_add,a_check, back;
     private TextView input_email;
     private Boolean check_email=false;
     private String username_get;
@@ -44,11 +43,21 @@ public class search_and_send_page extends AppCompatActivity {
         input_email = findViewById(R.id.addEmail1);
         a_add = findViewById(R.id.button3);
         a_check = findViewById(R.id.button4);
+        back = findViewById(R.id.back);
 
         Intent intent = getIntent();
+        final Intent i=new Intent(search_and_send_page.this,landing_login.class);
         final String user_name = intent.getStringExtra("User_Name");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.putExtra("User_Name",user_name);
+                startActivity(i);
+                finish();
+            }
+        });
 
-
+        // Check the email
         a_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +66,7 @@ public class search_and_send_page extends AppCompatActivity {
 
         });
 
-
+        // Send request
         a_add.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
