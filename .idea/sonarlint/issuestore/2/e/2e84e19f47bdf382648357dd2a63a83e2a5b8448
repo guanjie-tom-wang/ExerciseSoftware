@@ -1,0 +1,19 @@
+
+T
+java:S1128"7Remove this unused import 'android.app.ProgressDialog'.(¶ÍÔÓ8ñœ§ª.
+Q
+java:S1128"4Remove this unused import 'android.content.Context'.(©Ê‰è8ñœ§ª.
+q
+java:S1128"ORemove this unused import 'androidx.test.platform.app.InstrumentationRegistry'.(«êÀ‹øÿÿÿÿ8ñœ§ª.
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚Ø›Ô8ñœ§ª.
+g	java:S112!"FDefine and throw a dedicated exception instead of using a generic one.(‚ëô¡şÿÿÿÿ8ñœ§ª.
+b	java:S112?"FDefine and throw a dedicated exception instead of using a generic one.(«¤ÜÕ8ñœ§ª.
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(»à’òıÿÿÿÿ8ñœ§ª.
+j	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âñïş8ñœ§ª.
+e
+java:S1128"HRemove this unused import 'androidx.test.espresso.matcher.ViewMatchers'.(Ò„“ë8ñœ§ª.
+£
+java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚ëô¡şÿÿÿÿ8ñœ§ª.
+
+java:S1186?"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«¤ÜÕ8ñœ§ª.
