@@ -1,9 +1,0 @@
-
-c
-java:S1128"JRemove this unused import 'androidx.test.ext.junit.runners.AndroidJUnit4'.(ÊŠœÆûÿÿÿÿ
-\
-java:S1128"HRemove this unused import 'androidx.test.espresso.matcher.ViewMatchers'.(Ò„“ë
-P
-java:S1128"<Remove this unused import 'androidx.test.espresso.Espresso'.(ÖŒò
-r
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ôºÞÑùÿÿÿÿ
