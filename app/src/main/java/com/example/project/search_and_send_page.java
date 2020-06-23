@@ -18,11 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 
 
 public class search_and_send_page extends AppCompatActivity {
@@ -34,6 +36,8 @@ public class search_and_send_page extends AppCompatActivity {
     private TextView input_email;
     private Boolean check_email=false;
     private String username_get;
+    ArrayList<String> friend_request;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +122,7 @@ public class search_and_send_page extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             DocumentReference ref= db.collection("Users").document(username_get+"");
-                            ref.update("friend_request_from", user_name).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            ref.update("friend_request", FieldValue.arrayUnion(user_name)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(search_and_send_page.this, "Request sent!", Toast.LENGTH_LONG).show();
