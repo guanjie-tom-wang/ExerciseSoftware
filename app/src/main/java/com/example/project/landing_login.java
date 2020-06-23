@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    Button btn, add;
+    Button btn, add, post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class landing_login extends AppCompatActivity {
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
         add = findViewById(R.id.add);
+        post = findViewById(R.id.post);
 
         //set welcome words
         tv.setText("Welcome "+user_name+"!");
@@ -35,6 +36,15 @@ public class landing_login extends AppCompatActivity {
             public void onClick(View view){
                 contact.putExtra("User_Name",user_name);
                 startActivity(contact);
+                finish();
+            }
+        });
+        final Intent post_page=new Intent(landing_login.this, SelectAthlete.class);
+        post.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                post_page.putExtra("User_Name",user_name);
+                startActivity(post_page);
                 finish();
             }
         });

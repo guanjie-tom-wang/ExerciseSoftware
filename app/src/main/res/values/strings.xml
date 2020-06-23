@@ -19,4 +19,10 @@
     <string name="email_address">Email Address</string>
     <string name="sign_up">Sign up</string>
     <string name="update">Update</string>
+
+    <string-array name="drop_lists">
+        <item>test1</item>
+        <item>test2</item>
+        <item>test3</item>
+    </string-array>
 </resources>
