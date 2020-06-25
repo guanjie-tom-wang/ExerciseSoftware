@@ -54,4 +54,17 @@ public class CoachPostTest {
         onData(anything()).atPosition(0).perform(click());
         onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("pdd"))));
     }
+
+    @Test
+    public void testPostContentView() throws InterruptedException {
+        onView(withId(R.id.username)).perform(typeText("lee@123.com"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.password)).perform(typeText("12345678"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.btn_login)).perform(click());
+        Thread.sleep(3000);
+        onView(withId(R.id.post)).perform(click());
+        onView(withId(R.id.post_content)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
+    }
 }
