@@ -37,6 +37,7 @@ public class CoachPostTest {
         onView(withId(R.id.post)).perform(click());
         onView(withId(R.id.planets_spinner)).perform(click());
         onData(anything()).atPosition(0).perform(click());
+        Thread.sleep(300);
         onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("You have no friends yet, go add one!"))));
     }
 
@@ -51,6 +52,6 @@ public class CoachPostTest {
         onView(withId(R.id.post)).perform(click());
         onView(withId(R.id.planets_spinner)).perform(click());
         onData(anything()).atPosition(0).perform(click());
-        onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("123"))));
+        onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("pdd"))));
     }
 }
