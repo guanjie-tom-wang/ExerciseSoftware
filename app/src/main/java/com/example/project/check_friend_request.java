@@ -15,10 +15,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +37,8 @@ public class check_friend_request extends AppCompatActivity {
     //button to go back to main page
     private Button b_to_main;
     private FirebaseAuth mAuth;
-    String request_from;
-
+    ArrayList<String> friend_request;
+    ArrayList<String> friend_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,6 @@ public class check_friend_request extends AppCompatActivity {
         b_to_main=findViewById(R.id.back_from_request);
         mAuth = FirebaseAuth.getInstance();
         final Intent i=new Intent(check_friend_request.this,landing_login.class);
-
         //search the database based on username
         DocumentReference noteRef= db.collection("Users").document(user_name);
         noteRef.get()
@@ -60,12 +60,12 @@ public class check_friend_request extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         //check the value of friend_request_from
-                        request_from= documentSnapshot.getString("friend_request_from");
+                        friend_request= (ArrayList<String>) documentSnapshot.get("friend_request");
                         //if there is a request, display it to user
-                        if(!request_from.isEmpty()) {
+                        if(friend_request.size()>0) {
                             b_accept.setVisibility(View.VISIBLE);
                             b_decline.setVisibility(View.VISIBLE);
-                            request_message.setText("Hello " + user_name + ", You have a new friend request from: " + request_from + ".");
+                            request_message.setText("Hello " + user_name + ", You have a new friend request from: " + friend_request.get(0) + ".");
 
                         }
                         //if there is no request, display a message to the user.
@@ -116,9 +116,10 @@ public class check_friend_request extends AppCompatActivity {
     //method for accept
     public void onclick_accept(String user_name){
         DocumentReference update=FirebaseFirestore.getInstance().collection("Users").document(user_name);
-        Map<String, Object> map= new HashMap<>();
-        map.put("friend_request_from", "");
 
+        update.update("friend_list", FieldValue.arrayUnion(friend_request.get(0)));
+        Map<String, Object> map= new HashMap<>();
+        map.put("friend_request", FieldValue.arrayRemove(friend_request.get(0)));
         update.update(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -130,10 +131,10 @@ public class check_friend_request extends AppCompatActivity {
 
     }
     //method for decline
-    public void onclick_decline(String user_name){
-        DocumentReference update=FirebaseFirestore.getInstance().collection("User").document(user_name);
-        Map<String, Object> map= new HashMap<>();
-        map.put("friend_request_from", "");
+    public void onclick_decline(String user_name) {
+        DocumentReference update = FirebaseFirestore.getInstance().collection("Users").document(user_name);
+        Map<String, Object> map = new HashMap<>();
+        map.put("friend_request", FieldValue.arrayRemove(friend_request.get(0)));
 
         update.update(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -143,7 +144,6 @@ public class check_friend_request extends AppCompatActivity {
                                 , Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
 

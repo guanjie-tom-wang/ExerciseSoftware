@@ -21,6 +21,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 
 public class Update extends AppCompatActivity {
     //get the FirebaseFirestore instance
@@ -88,7 +90,10 @@ public class Update extends AppCompatActivity {
         final String phoneNumber = phone.getText().toString();
         final String addressText = address.getText().toString();
         final String email_address = email.getText().toString();
-        final String friend_request_from="";
+        final ArrayList<String> friend_request=new ArrayList<String>() ;
+        final ArrayList<String> friend_list=new ArrayList<String>() ;
+
+
         //check whether inputs are meet requirements
         String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
@@ -136,7 +141,7 @@ public class Update extends AppCompatActivity {
                                 //create a new user object for this user and update information use latest input
                                 User userinfo;
                                 userinfo = new User(username+"",phoneNumber+"",addressText+"," +
-                                        "", email_address+"",passText+"", roleText+"",friend_request_from,Integer.parseInt(heightNum),
+                                        "", email_address+"",passText+"", roleText+"",friend_request, friend_list, Integer.parseInt(heightNum),
                                         Integer.parseInt(weightNum),Integer.parseInt(ageNum));
                                 ref.set(userinfo);
                                 //update the auth information 
