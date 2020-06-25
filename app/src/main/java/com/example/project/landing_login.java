@@ -39,7 +39,7 @@ public class landing_login extends AppCompatActivity {
                 finish();
             }
         });
-        final Intent post_page=new Intent(landing_login.this, SelectAthlete.class);
+        final Intent post_page=new Intent(landing_login.this, CoachPost.class);
         post.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
