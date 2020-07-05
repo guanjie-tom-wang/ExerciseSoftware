@@ -31,6 +31,7 @@ public class CoachPost extends AppCompatActivity {
     FirebaseAuth user;
     List<String> friend_list = new ArrayList<>();
 
+    // This is the activity for the coach role.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class CoachPost extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance();
 
+        // Get the current username
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
         final Spinner mySpinner = (Spinner) findViewById(R.id.planets_spinner);
@@ -53,6 +55,7 @@ public class CoachPost extends AppCompatActivity {
 
         DocumentReference current_user= db.collection("Users").document(user_name);
 
+        // Use a spinner to show all the friends of the current user in a dropdown list.
         current_user.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -64,6 +67,7 @@ public class CoachPost extends AppCompatActivity {
                             myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             mySpinner.setAdapter(myAdapter);
                         }
+                        // If there is no friend yet, then give user a warning message.
                         else{
                             List<String> no_friend_list= new ArrayList<>();
                             no_friend_list.add("You have no friends yet, go add one!");
