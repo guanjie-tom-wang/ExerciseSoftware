@@ -1,4 +1,4 @@
-package com.example.project;
+package com.csci3130.myapplication;
 
 import org.junit.Test;
 
