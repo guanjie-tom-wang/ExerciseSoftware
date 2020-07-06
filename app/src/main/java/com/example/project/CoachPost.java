@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoachPost extends AppCompatActivity {
-    private Button b1;
+    private Button return_to_main_button;
     FirebaseFirestore db;
     FirebaseAuth user;
     List<String> friend_list = new ArrayList<>();
@@ -36,8 +36,8 @@ public class CoachPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coachpost);
-        b1=findViewById(R.id.button8);
-        b1.setOnClickListener(new View.OnClickListener() {
+        return_to_main_button=findViewById(R.id.return_to_main);
+        return_to_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
@@ -50,7 +50,7 @@ public class CoachPost extends AppCompatActivity {
         // Get the current username
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
-        final Spinner mySpinner = (Spinner) findViewById(R.id.planets_spinner);
+        final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
 
 
         DocumentReference current_user= db.collection("Users").document(user_name);

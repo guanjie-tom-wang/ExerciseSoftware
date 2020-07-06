@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/return_to_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/planets_spinner"
+        android:id="@+id/friends_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -47,7 +47,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginBottom="15dp"
         android:text="Select an athlete you want to assign the task to: "
-        app:layout_constraintBottom_toTopOf="@+id/planets_spinner"
+        app:layout_constraintBottom_toTopOf="@+id/friends_spinner"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Enter here: "
-        app:layout_constraintBottom_toTopOf="@+id/planets_spinner"
+        app:layout_constraintBottom_toTopOf="@+id/friends_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
