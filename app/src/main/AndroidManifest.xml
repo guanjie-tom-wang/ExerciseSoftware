@@ -33,6 +33,7 @@
         <activity android:name=".AthletePost" />
         <activity android:name=".userTypeWrong" />
 
+
     </application>
 
 </manifest>

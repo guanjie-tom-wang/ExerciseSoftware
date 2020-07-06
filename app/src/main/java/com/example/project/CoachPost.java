@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -27,6 +29,10 @@ import java.util.List;
 
 public class CoachPost extends AppCompatActivity {
     private Button return_to_main_button;
+    private Button submit;
+    private DatePicker simpleDatePicker;
+    private EditText coachC;
+    Post p;
     FirebaseFirestore db;
     FirebaseAuth user;
     List<String> friend_list = new ArrayList<>();
@@ -37,12 +43,13 @@ public class CoachPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coachpost);
         return_to_main_button=findViewById(R.id.return_to_main);
-        return_to_main_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            }
-        });
+        submit = findViewById(R.id.post_c);
+        coachC=findViewById(R.id.post_content);
+        simpleDatePicker = findViewById(R.id.simpleDatePicker);
+        p= new Post();
+
+
+
 
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance();
@@ -52,6 +59,33 @@ public class CoachPost extends AppCompatActivity {
         final String user_name = intent.getStringExtra("User_Name");
         final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get the values for day of month , month and year from a date picker , and content
+                int day = simpleDatePicker.getDayOfMonth();
+                int month = simpleDatePicker.getMonth();
+                int year = simpleDatePicker.getYear();
+                String content =  coachC.getText().toString();
+                p.setAuthor(user_name);
+                p.setContent(content);
+                p.setDay(day);
+                p.setMonth(month);
+                p.setYear(year);
+
+                db.collection("Posts").add(p);
+                db.collection("Users").document(user_name).update("posts", FieldValue.arrayUnion(p));
+                System.out.println(user_name+" "+day+" "+content);
+                startActivity(new Intent(getApplicationContext(), landing_login.class));
+            }
+        });
+
+        return_to_main_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
 
         DocumentReference current_user= db.collection("Users").document(user_name);
 
