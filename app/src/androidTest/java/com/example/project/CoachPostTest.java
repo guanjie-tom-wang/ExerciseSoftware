@@ -42,9 +42,9 @@ public class CoachPostTest {
     }
     @Test
     public void testSpinnerFriendList() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("lee@123.com"));
+        onView(withId(R.id.username)).perform(typeText("98123@dal.ca"));
         Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("12345678"));
+        onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         Thread.sleep(200);
         onView(withId(R.id.btn_login)).perform(click());
@@ -60,9 +60,9 @@ public class CoachPostTest {
 
     @Test
     public void testPostContentView() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("lee@123.com"));
+        onView(withId(R.id.username)).perform(typeText("98123@dal.ca"));
         Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("12345678"));
+        onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
