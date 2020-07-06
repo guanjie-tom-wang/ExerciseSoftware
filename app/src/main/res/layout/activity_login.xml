@@ -121,7 +121,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
     <Spinner
-        android:id="@+id/planets_spinner"
+        android:id="@+id/friends_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

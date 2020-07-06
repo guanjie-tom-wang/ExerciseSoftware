@@ -28,31 +28,34 @@ public class CoachPostTest {
 
     @Test
     public void testNoFriendsAdded() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("3@q.com"));
+        onView(withId(R.id.username)).perform(typeText("999@qq.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
         onView(withId(R.id.post)).perform(click());
-        onView(withId(R.id.planets_spinner)).perform(click());
+        onView(withId(R.id.friends_spinner)).perform(click());
         onData(anything()).atPosition(0).perform(click());
         Thread.sleep(300);
-        onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("You have no friends yet, go add one!"))));
+        onView(withId(R.id.friends_spinner)).check(matches(withSpinnerText(containsString("You have no friends yet, go add one!"))));
     }
-
     @Test
     public void testSpinnerFriendList() throws InterruptedException {
         onView(withId(R.id.username)).perform(typeText("lee@123.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("12345678"));
         Espresso.closeSoftKeyboard();
+        Thread.sleep(200);
         onView(withId(R.id.btn_login)).perform(click());
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         onView(withId(R.id.post)).perform(click());
-        onView(withId(R.id.planets_spinner)).perform(click());
+        Thread.sleep(300);
+        onView(withId(R.id.friends_spinner)).perform(click());
+        Thread.sleep(300);
         onData(anything()).atPosition(0).perform(click());
-        onView(withId(R.id.planets_spinner)).check(matches(withSpinnerText(containsString("pdd"))));
+        Thread.sleep(300);
+        onView(withId(R.id.friends_spinner)).check(matches(withSpinnerText(containsString("pdd"))));
     }
 
     @Test
