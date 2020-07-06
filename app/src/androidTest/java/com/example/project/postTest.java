@@ -38,9 +38,9 @@ public class postTest {
     @Test
     //test for coach
     public void postRequest() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("1@q.com"));
+        onView(withId(R.id.username)).perform(typeText("11@q.ca"));
         Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("1234567"));
+        onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
@@ -51,7 +51,7 @@ public class postTest {
     @Test
     //test for athlete
     public void postRequest1() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("2@q.com"));
+        onView(withId(R.id.username)).perform(typeText("22@q.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
@@ -64,7 +64,7 @@ public class postTest {
     @Test
     //test for wrong type
     public void postRequest2() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("3@q.com"));
+        onView(withId(R.id.username)).perform(typeText("333@q.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
