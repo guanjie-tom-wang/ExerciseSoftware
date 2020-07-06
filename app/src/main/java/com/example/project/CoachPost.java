@@ -10,19 +10,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CoachPost extends AppCompatActivity {
-    private TextView t1;
-    private EditText e1;
-    private Button b1;
+    private TextView tvCoach;//
+    private EditText edCoach;
+    private Button bCoach;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coachpost);
-        t1=findViewById(R.id.textView);
-        t1.setText("Entry content which you want to post");
-        e1=findViewById(R.id.editTextTextPersonName2);
-        e1.setText("");
-        b1=findViewById(R.id.button8);
-        b1.setOnClickListener(new View.OnClickListener() {
+        tvCoach=findViewById(R.id.textView);
+        tvCoach.setText("Entry content which you want to post");
+        edCoach=findViewById(R.id.editTextTextPersonName2);
+        edCoach.setText("");
+        bCoach=findViewById(R.id.button8);
+        bCoach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
