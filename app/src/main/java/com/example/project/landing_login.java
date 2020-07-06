@@ -76,7 +76,9 @@ public class landing_login extends AppCompatActivity {
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    coachpost.putExtra("User_Name",user_name);
                                     startActivity(coachpost);
+                                    finish();
                                     Toast.makeText(landing_login.this, "Entry content which you want to post", Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -85,6 +87,7 @@ public class landing_login extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     startActivity(athletepost);
+                                    finish();
                                     Toast.makeText(landing_login.this, "Entry content which you want to post", Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -93,6 +96,7 @@ public class landing_login extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     startActivity(userTypeWrong);
+                                    finish();
                                 }
                             });
                         }

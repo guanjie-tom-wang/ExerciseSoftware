@@ -38,7 +38,7 @@ public class postTest {
     @Test
     //test for coach
     public void postRequest() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("11@q.ca"));
+        onView(withId(R.id.username)).perform(typeText("999@qq.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
@@ -46,7 +46,7 @@ public class postTest {
         Thread.sleep(3000);
 
         onView(withId(R.id.button7)).perform(click());
-        onView(withId(R.id.textView)).check(matches(withText("Entry content which you want to post")));
+        onView(withId(R.id.textView)).check(matches(withText("Select an athlete you want to assign the task to: ")));
     }
     @Test
     //test for athlete

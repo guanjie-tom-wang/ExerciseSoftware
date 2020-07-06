@@ -30,6 +30,8 @@
         <activity
             android:name=".Update"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".AthletePost" />
+        <activity android:name=".userTypeWrong" />
 
     </application>
 
