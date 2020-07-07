@@ -55,10 +55,13 @@ public class search_and_send_page extends AppCompatActivity {
         final Intent contact=new Intent(search_and_send_page.this,display_friend_list.class);
 
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 contact.putExtra("User_Name",user_name);
+                contact.putExtra("User_Type",user_type);
+
                 startActivity(contact);
                 finish();
             }

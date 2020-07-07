@@ -46,6 +46,8 @@ public class check_friend_request extends AppCompatActivity {
         Intent intent = getIntent();
         setTitle("Friend request");
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
+
         db = FirebaseFirestore.getInstance();
         RegisterUser = FirebaseAuth.getInstance();
         request_message = findViewById(R.id.message);
@@ -110,6 +112,8 @@ public class check_friend_request extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 contact.putExtra("User_Name",user_name);
+                contact.putExtra("User_Type",user_type);
+
                 startActivity(contact);
 
 
