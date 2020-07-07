@@ -10,7 +10,7 @@
         android:id="@+id/addEmail1"
         android:layout_width="257dp"
         android:layout_height="53dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="292dp"
         android:ems="10"
         android:hint="Enter Email"
         android:inputType="textEmailAddress"
@@ -22,12 +22,13 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:text="Add (request)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addEmail1" />
+        app:layout_constraintTop_toBottomOf="@+id/addEmail1"
+        app:layout_constraintVertical_bias="0.969" />
 
     <Button
         android:id="@+id/button4"
@@ -36,26 +37,24 @@
         android:text="Check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addEmail1" />
+        app:layout_constraintTop_toBottomOf="@+id/addEmail1"
+        app:layout_constraintVertical_bias="0.97" />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="323dp"
-        android:layout_marginRight="323dp"
-        android:layout_marginBottom="141dp"
-        android:background="#B4039BE5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="288dp"
+        android:layout_marginBottom="24dp"
         android:text="Back"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addEmail1"
         app:layout_constraintVertical_bias="0.37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
