@@ -41,6 +41,7 @@ public class display_friend_list extends AppCompatActivity {
         back=findViewById(R.id.back);
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
         final Intent contact=new Intent(display_friend_list.this, search_and_send_page.class);
 
         //start a new activity when click button
@@ -69,6 +70,7 @@ public class display_friend_list extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
                 startActivity(i);
 
 

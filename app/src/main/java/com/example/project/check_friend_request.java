@@ -44,6 +44,7 @@ public class check_friend_request extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_friend_request);
         Intent intent = getIntent();
+        setTitle("Friend request");
         final String user_name = intent.getStringExtra("User_Name");
         db = FirebaseFirestore.getInstance();
         RegisterUser = FirebaseAuth.getInstance();

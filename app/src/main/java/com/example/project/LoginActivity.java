@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_login);
         // Initialize instances
+        setTitle("Login");
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login = findViewById(R.id.btn_login);
@@ -102,9 +103,12 @@ public class LoginActivity extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
 
                                     String user_name = (String) document.getData().get("username");
+                                    String user_type = (String) document.getData().get("type");
+
                                     progressDialog.dismiss();
                                     //send the username to other activities.
                                     login.putExtra("User_Name",user_name);
+                                    login.putExtra("User_Type",user_type);
                                     startActivity(login);
                                 }
                             } else {

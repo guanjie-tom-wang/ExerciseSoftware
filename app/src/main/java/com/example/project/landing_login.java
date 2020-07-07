@@ -29,34 +29,29 @@ public class landing_login extends AppCompatActivity {
         //create a new intent
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
+        setTitle("Welcome "+user_type+ " !");
+
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
-        add = findViewById(R.id.add);
         post = findViewById(R.id.post);
 
-        tv.setText("Welcome "+user_name+"!");
+        tv.setText("Welcome, "+user_type+" "+user_name+"!");
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
-       // final Intent contact = new Intent(landing_login.this, check_friend_request.class);
+
         //start a new activity when click button
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 contact.putExtra("User_Name", user_name);
+                contact.putExtra("User_Type", user_type);
                 startActivity(contact);
                 finish();
             }
         });
 
-        final Intent addFreinds = new Intent(landing_login.this, search_and_send_page.class);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addFreinds.putExtra("User_Name", user_name);
-                startActivity(addFreinds);
-                finish();
-            }
-        });
+
         //create intents to different file for different type
         final Intent coachpost= new Intent(landing_login.this, CoachPost.class);
         final Intent athletepost= new Intent(landing_login.this, AthletePost.class);
@@ -77,6 +72,8 @@ public class landing_login extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     coachpost.putExtra("User_Name",user_name);
+                                    coachpost.putExtra("User_Type",user_type);
+
                                     startActivity(coachpost);
                                     finish();
                                     Toast.makeText(landing_login.this, "Entry content which you want to post", Toast.LENGTH_LONG).show();

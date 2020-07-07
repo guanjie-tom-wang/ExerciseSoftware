@@ -42,6 +42,7 @@ public class CoachPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coachpost);
+        setTitle("Add a Post");
         return_to_main_button=findViewById(R.id.return_to_main);
         submit = findViewById(R.id.post_c);
         coachC=findViewById(R.id.post_content);
@@ -57,7 +58,10 @@ public class CoachPost extends AppCompatActivity {
         // Get the current username
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
+
         final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
+        final Intent i2=new Intent(CoachPost.this,landing_login.class);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,13 +80,20 @@ public class CoachPost extends AppCompatActivity {
                 db.collection("Posts").add(p);
                 db.collection("Users").document(user_name).update("posts", FieldValue.arrayUnion(p));
                 System.out.println(user_name+" "+day+" "+content);
-                startActivity(new Intent(getApplicationContext(), landing_login.class));
+                i2.putExtra("User_Name",user_name);
+                i2.putExtra("User_Type",user_type);
+                startActivity(i2);
             }
         });
+        final Intent i=new Intent(CoachPost.this,landing_login.class);
+
         return_to_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), landing_login.class));
+                i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
+                startActivity(i);
+
             }
         });
 

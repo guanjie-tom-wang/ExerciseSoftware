@@ -44,6 +44,7 @@ public class search_and_send_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_and_send_page);
         db = FirebaseFirestore.getInstance();
+        setTitle("Add a friend");
         input_email = findViewById(R.id.addEmail1);
         a_add = findViewById(R.id.button3);
         a_check = findViewById(R.id.button4);
