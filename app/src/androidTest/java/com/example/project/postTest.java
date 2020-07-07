@@ -45,7 +45,7 @@ public class postTest {
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
 
-        onView(withId(R.id.button7)).perform(click());
+        onView(withId(R.id.post)).perform(click());
         onView(withId(R.id.textView)).check(matches(withText("Select an athlete you want to assign the task to: ")));
     }
     @Test
@@ -58,7 +58,7 @@ public class postTest {
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
 
-        onView(withId(R.id.button7)).perform(click());
+        onView(withId(R.id.post)).perform(click());
         onView(withId(R.id.textView2)).check(matches(withText("Entry content which you want to post")));
     }
     @Test
@@ -71,7 +71,7 @@ public class postTest {
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
 
-        onView(withId(R.id.button7)).perform(click());
+        onView(withId(R.id.post)).perform(click());
         onView(withId(R.id.textView3)).check(matches(withText("user type error, Update your information")));
     }
 }
