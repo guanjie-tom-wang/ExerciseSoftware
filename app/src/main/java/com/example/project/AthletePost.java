@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AthletePost  extends AppCompatActivity {
     private TextView tAthlete;
-    private EditText etAthlete;
     private Button bAthlete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +18,6 @@ public class AthletePost  extends AppCompatActivity {
         setContentView(R.layout.activity_althletepost);
         tAthlete=findViewById(R.id.textView2);
         tAthlete.setText("Entry content which you want to post");
-        etAthlete=findViewById(R.id.editTextTextPersonName);
-        etAthlete.setText("");
         bAthlete=findViewById(R.id.button6);
         bAthlete.setOnClickListener(new View.OnClickListener() {
             @Override

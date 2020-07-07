@@ -36,7 +36,7 @@ public class landing_login extends AppCompatActivity {
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
 
-        tv.setText("Welcome, "+user_type+" "+user_name+"!");
+        //tv.setText("Welcome, "+user_type+" "+user_name+"!\n You can view your tasks from your coach by clicking Post.");
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
 
@@ -68,6 +68,7 @@ public class landing_login extends AppCompatActivity {
                         assert str9 != null;
                         str9=str9.toLowerCase();//make all type tp lower case
                         if (str9.equals("coach")) {
+                            tv.setText("Welcome, "+user_type+" "+user_name+"!\n You can send task to an athlete by clicking Post.");
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -80,12 +81,13 @@ public class landing_login extends AppCompatActivity {
                                 }
                             });
                         } else if (str9.equals("athlete")) {
+                            tv.setText("Welcome, "+user_type+" "+user_name+"!\n You can view your tasks from your coach by clicking Post.");
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     startActivity(athletepost);
                                     finish();
-                                    Toast.makeText(landing_login.this, "Entry content which you want to post", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(landing_login.this, "Your tasks are shown above ", Toast.LENGTH_LONG).show();
                                 }
                             });
                         } else {
