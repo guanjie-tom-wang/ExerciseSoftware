@@ -71,7 +71,7 @@ public class landing_login extends AppCompatActivity {
                     if (result != null && result.getString("type") != null) {
                         String str9 = result.getString("type");
                         assert str9 != null;
-                        str9.toLowerCase();//make all type tp lower case 
+                        str9=str9.toLowerCase();//make all type tp lower case
                         if (str9.equals("coach")) {
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override
