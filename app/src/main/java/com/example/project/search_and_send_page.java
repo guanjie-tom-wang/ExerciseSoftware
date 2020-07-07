@@ -56,6 +56,8 @@ public class search_and_send_page extends AppCompatActivity {
 
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
+        System.out.print(user_name);
+        System.out.print(user_type);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +65,6 @@ public class search_and_send_page extends AppCompatActivity {
                 contact.putExtra("User_Type",user_type);
 
                 startActivity(contact);
-                finish();
             }
         });
 
