@@ -85,6 +85,8 @@ public class landing_login extends AppCompatActivity {
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    athletepost.putExtra("User_Name",user_name);
+                                    athletepost.putExtra("User_Type",user_type);
                                     startActivity(athletepost);
                                     finish();
                                     Toast.makeText(landing_login.this, "Your tasks are shown above ", Toast.LENGTH_LONG).show();
