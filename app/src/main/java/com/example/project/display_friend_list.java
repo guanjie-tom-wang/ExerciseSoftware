@@ -59,6 +59,8 @@ public class display_friend_list extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 request.putExtra("User_Name",user_name);
+                request.putExtra("User_Type",user_type);
+                request.putExtra("User_Name",user_name);
                 startActivity(request);
 
             }
