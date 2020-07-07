@@ -34,10 +34,10 @@ public class landing_login extends AppCompatActivity {
         add = findViewById(R.id.add);
         post = findViewById(R.id.post);
 
-
+        tv.setText("Welcome "+user_name+"!");
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
-        final Intent contact = new Intent(landing_login.this, check_friend_request.class);
+       // final Intent contact = new Intent(landing_login.this, check_friend_request.class);
         //start a new activity when click button
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

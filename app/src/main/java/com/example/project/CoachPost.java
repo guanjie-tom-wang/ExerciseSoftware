@@ -79,11 +79,10 @@ public class CoachPost extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), landing_login.class));
             }
         });
-
         return_to_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), landing_login.class));
             }
         });
 
