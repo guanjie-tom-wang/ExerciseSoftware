@@ -31,7 +31,7 @@ public class landing_login extends AppCompatActivity {
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
         add = findViewById(R.id.add);
-        post = findViewById(R.id.button7);
+        post = findViewById(R.id.post);
 
 
         //set welcome words
