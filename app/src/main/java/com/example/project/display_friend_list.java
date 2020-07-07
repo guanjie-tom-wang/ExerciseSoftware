@@ -75,6 +75,7 @@ public class display_friend_list extends AppCompatActivity {
 
             }
         });
+        //create a recycler view to display all user's friends.
         DocumentReference nRef= db.collection("Users").document(user_name);
         nRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
