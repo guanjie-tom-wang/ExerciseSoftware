@@ -16,6 +16,7 @@ public class landing_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_login);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //create a new intent
         Intent intent = getIntent();
@@ -27,7 +28,7 @@ public class landing_login extends AppCompatActivity {
         //set welcome words
         tv.setText("Welcome "+user_name+"!");
 
-        final Intent contact=new Intent(landing_login.this, check_friend_request.class);
+        final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
         //start a new activity when click button
         btn.setOnClickListener(new View.OnClickListener(){

@@ -51,12 +51,14 @@ public class search_and_send_page extends AppCompatActivity {
 
         Intent intent = getIntent();
         final Intent i=new Intent(search_and_send_page.this,landing_login.class);
+        final Intent contact=new Intent(search_and_send_page.this,display_friend_list.class);
+
         final String user_name = intent.getStringExtra("User_Name");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i.putExtra("User_Name",user_name);
-                startActivity(i);
+                contact.putExtra("User_Name",user_name);
+                startActivity(contact);
                 finish();
             }
         });

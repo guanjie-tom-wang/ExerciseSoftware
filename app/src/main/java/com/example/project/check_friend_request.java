@@ -55,6 +55,7 @@ public class check_friend_request extends AppCompatActivity {
         final Intent i=new Intent(check_friend_request.this,landing_login.class);
         //search the database based on username
         DocumentReference noteRef= db.collection("Users").document(user_name);
+
         noteRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -86,7 +87,7 @@ public class check_friend_request extends AppCompatActivity {
                 onclick_accept(user_name);
                 i.putExtra("User_Name",user_name);
                 startActivity(i);
-                finish();
+
             }
         });
 
@@ -97,18 +98,21 @@ public class check_friend_request extends AppCompatActivity {
                 onclick_decline(user_name);
                 i.putExtra("User_Name",user_name);
                 startActivity(i);
-                finish();
+
             }
         });
 
         //back to main page, and display a hello message to the user.
+        final Intent contact=new Intent(check_friend_request.this,display_friend_list.class);
+
         b_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i.putExtra("User_Name",user_name);
-                startActivity(i);
+                contact.putExtra("User_Name",user_name);
+                startActivity(contact);
 
-                finish();
+
+
             }
         });
     }

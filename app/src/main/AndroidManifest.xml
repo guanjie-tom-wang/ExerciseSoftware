@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".display_friend_list"/>
         <activity android:name=".check_friend_request" />
         <activity android:name=".search_and_send_page" />
         <activity android:name=".landing_login" />

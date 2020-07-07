@@ -43,6 +43,8 @@ public class check_friend_requestTest  {
         Thread.sleep(3000);
 
         onView(withId(R.id.contacts)).perform(click());
+        onView(withId(R.id.check_friend)).perform(click());
+
         onView(withId(R.id.message)).check(matches(withText("Hello Rui, You have a new friend request from: LDH.")));
     }
 
@@ -50,14 +52,16 @@ public class check_friend_requestTest  {
     @Test
     //test for user who has no request
     public void no_friendRequest() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("test@dal.ca"));
+        onView(withId(R.id.username)).perform(typeText("333@q.com"));
         Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("12345678"));
+        onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
         onView(withId(R.id.contacts)).perform(click());
-        onView(withId(R.id.message)).check(matches(withText("Hello LDH, You have no friend request now. ")));
+        onView(withId(R.id.check_friend)).perform(click());
+
+        onView(withId(R.id.message)).check(matches(withText("Hello 333, You have no friend request now. ")));
     }
     @After
     public void tearDown() throws Exception {
