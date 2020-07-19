@@ -10,13 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".check_friend_request"
+        <activity android:name=".DetailsActivity"></activity>
+        <activity
+            android:name=".check_friend_request"
             tools:ignore="MissingClass" />
-        <activity android:name=".search_and_send_page"></activity>
-        <activity android:name=".CoachPost">
-        </activity>
-        <activity android:name=".display_friend_list">
-        </activity>
+        <activity android:name=".search_and_send_page" />
+        <activity android:name=".CoachPost"></activity>
+        <activity android:name=".display_friend_list"></activity>
         <activity android:name=".landing_login" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
@@ -27,15 +27,13 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".Register"
-        android:parentActivityName=".MainActivity" />
+            android:name=".Register"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Update"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".AthletePost" />
         <activity android:name=".userTypeWrong" />
-
-
     </application>
 
 </manifest>
