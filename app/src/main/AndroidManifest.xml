@@ -10,13 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".ViewPost"></activity>
+        <activity android:name=".AddPost" />
+        <activity android:name=".DetailsActivity" />
         <activity
             android:name=".check_friend_request"
             tools:ignore="MissingClass" />
         <activity android:name=".search_and_send_page" />
-        <activity android:name=".CoachPost"></activity>
-        <activity android:name=".display_friend_list"></activity>
+        <activity android:name=".CoachPost" />
+        <activity android:name=".display_friend_list" />
         <activity android:name=".landing_login" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">

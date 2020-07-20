@@ -1,9 +1,10 @@
-package com.csci3130.myapplication;
+package com.example.project;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import  com.example.project.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
