@@ -14,7 +14,8 @@ public class User {
     public int height;
     public int weight;
     public int age;
-    public User(String Un,String TN,String HAD,String ED,String pw,String t, ArrayList<String> fq, ArrayList<String> fl,int h,int w,int a){
+    public int stepnumber;
+    public User(String Un,String TN,String HAD,String ED,String pw,String t, ArrayList<String> fq, ArrayList<String> fl,int h,int w,int a,int s){
         username=Un;
         TelNumber=TN;
         homeAddress=HAD;
@@ -26,6 +27,7 @@ public class User {
         height=h;
         weight=w;
         age=a;
+        stepnumber=s;
     }
 
 }
