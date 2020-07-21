@@ -1,0 +1,17 @@
+
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
+b
+java:S1128"LRemove this unused import 'com.google.firebase.firestore.DocumentReference'.(«Ë
+m
+java:S1450&"WRemove the "register" field and declare it as a local variable in the relevant methods.(†çæ½
+e	java:S116+"QRename this field "Update" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ‰§L
+N
+java:S1128
+"3Remove this unused import 'android.widget.TabHost'.(úŸñÑüÿÿÿÿ
+j
+java:S1450+"URemove the "Update" field and declare it as a local variable in the relevant methods.(Ğ‰§L
+j
+java:S1450$"TRemove the "login" field and declare it as a local variable in the relevant methods.(õ¸€§
+]
+java:S1128"BRemove this unused import 'com.google.firebase.auth.FirebaseUser'.(’àíĞùÿÿÿÿ

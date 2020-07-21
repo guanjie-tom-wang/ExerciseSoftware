@@ -1,0 +1,27 @@
+
+e
+java:S1192/"JDefine a constant instead of duplicating this literal "User_Name" 4 times.(ŠáŒ²úÿÿÿÿ
+a
+java:S11929"FDefine a constant instead of duplicating this literal "Users" 3 times.(àÖ¬Şûÿÿÿÿ
+j
+java:S1192?"ODefine a constant instead of duplicating this literal "friend_request" 3 times.(«÷‚œüÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Óüòä
+Y
+java:S1155A">Use isEmpty() to check whether the collection is empty or not.(šå†şüÿÿÿÿ
+s
+java:S1450&"XRemove the "b_to_main" field and declare it as a local variable in the relevant methods.(ç–ËÃûÿÿÿÿ
+g
+java:S1450"QRemove the "db" field and declare it as a local variable in the relevant methods.(úåÔÌ
+j
+java:S1450'"TRemove the "mAuth" field and declare it as a local variable in the relevant methods.(ªĞ”’
+q	java:S116"WRename this field "RegisterUser" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø¶øøÿÿÿÿ
+t	java:S116"ZRename this field "request_message" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­…‡óÿÿÿÿÿ
+h	java:S116!"SRename this field "b_accept" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ƒì
+n	java:S116""TRename this field "b_decline" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áã‰èıÿÿÿÿ
+n	java:S116&"TRename this field "b_to_main" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç–ËÃûÿÿÿÿ
+n	java:S116("YRename this field "friend_request" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†èÓÀ
+p	java:S116)"VRename this field "friend_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖŞ³Úùÿÿÿÿ
+c	java:S100u"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßÑÅı
+d	java:S100†"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¡²¼
+?
+java:S1068'")Remove this unused "mAuth" private field.(ªĞ”’
