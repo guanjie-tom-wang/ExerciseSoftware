@@ -1,4 +1,0 @@
-
-…
-java:S1319"oThe type of the "list" object should be an interface such as "List" rather than the implementation "ArrayList".(ü”È­
-p	java:S116"VRename this field "friend_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÞ³Úùÿÿÿÿ

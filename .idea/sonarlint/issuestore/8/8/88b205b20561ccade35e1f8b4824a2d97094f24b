@@ -1,9 +1,0 @@
-
-q	java:S116"WRename this field "RegisterUser" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø¶øøÿÿÿÿ
-n	java:S116 "TRename this field "error_msg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€›¸âıÿÿÿÿ
-h
-java:S3776Q"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(Ö×õÄ
-t
-java:S2293]"YReplace the type specification in this constructor call with the diamond operator ("<>").(·ÏËúÿÿÿÿ
-t
-java:S2293^"YReplace the type specification in this constructor call with the diamond operator ("<>").(›³…ıùÿÿÿÿ
