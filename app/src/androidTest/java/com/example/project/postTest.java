@@ -38,9 +38,9 @@ public class postTest {
     @Test
     //test for coach
     public void postRequest() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("test@123.com"));
+        onView(withId(R.id.username)).perform(typeText("test3@test.com"));
         Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("12345678"));
+        onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.btn_login)).perform(click());
         Thread.sleep(3000);
