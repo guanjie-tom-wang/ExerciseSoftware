@@ -107,8 +107,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            if((event.values[0]>0.5 || event.values[0]<-0.5 ||
-                    event.values[1]>10 || event.values[1]<8 ||event.values[2]>0.5 || event.values[2]<-0.5)
+            if((event.values[0]>0.5 || event.values[0]<-0.5 ||event.values[2]>1 || event.values[2]<-1)
                     && event.timestamp - lastStepTimeNs > STEP_DELAY_NS) {
                 lastStepTimeNs = event.timestamp;
 
