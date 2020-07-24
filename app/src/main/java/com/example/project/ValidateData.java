@@ -6,7 +6,7 @@ class ValidateData {
                                         String height, String username, String email){
 
         String error = "";
-        String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String regex_email = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         String regex_digit = "^\\d+";
 
         if ( password.isEmpty()) {
