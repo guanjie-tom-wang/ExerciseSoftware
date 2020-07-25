@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">project</string>
     <string name="password">Password</string>
-    <string name="athelet_or_coach">Athelet or Coach?</string>
+    <string name="athelet_or_coach">Athlete or Coach?</string>
     <string name="address">Address</string>
     <string name="tel_number">Tel number</string>
     <string name="email">Email</string>
