@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".check_friend_request"
+        <activity android:name=".ViewPost"></activity>
+        <activity android:name=".AddPost" />
+        <activity android:name=".DetailsActivity" />
+        <activity
+            android:name=".check_friend_request"
             tools:ignore="MissingClass" />
         <activity android:name=".search_and_send_page"></activity>
         <activity android:name=".StepCounter"></activity>
@@ -28,15 +32,13 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".Register"
-        android:parentActivityName=".MainActivity" />
+            android:name=".Register"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Update"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".AthletePost" />
         <activity android:name=".userTypeWrong" />
-
-
     </application>
 
 </manifest>

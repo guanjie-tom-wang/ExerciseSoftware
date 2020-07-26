@@ -47,7 +47,7 @@ public class CoachPost extends AppCompatActivity {
         submit = findViewById(R.id.post_c);
         coachC=findViewById(R.id.post_content);
         simpleDatePicker = findViewById(R.id.simpleDatePicker);
-        p= new Post();
+        //p= new Post();
 
 
 
@@ -71,11 +71,11 @@ public class CoachPost extends AppCompatActivity {
                 int month = simpleDatePicker.getMonth();
                 int year = simpleDatePicker.getYear();
                 String content =  coachC.getText().toString();
-                p.setAuthor(user_name);
-                p.setContent(content);
-                p.setDay(day);
-                p.setMonth(month);
-                p.setYear(year);
+                //p.setAuthor(user_name);
+                //p.setContent(content);
+                //p.setDay(day);
+                //p.setMonth(month);
+                //p.setYear(year);
 
                 db.collection("Posts").add(p);
                 db.collection("Users").document(user_name).update("posts", FieldValue.arrayUnion(p));

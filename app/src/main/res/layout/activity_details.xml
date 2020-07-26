@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animationCache="true"
+    tools:context=".DetailsActivity">
+
+
+     <TextView
+         android:id="@+id/u_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="32dp"
+         android:layout_marginLeft="32dp"
+         android:layout_marginTop="68dp"
+         android:text="TextView"
+         android:textSize="30sp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+
+     <TextView
+         android:id="@+id/u_age"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="32dp"
+         android:layout_marginLeft="32dp"
+         android:layout_marginTop="8dp"
+         android:text="TextView"
+         android:textSize="24sp"
+
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/u_name" />
+
+     <TextView
+         android:id="@+id/u_email"
+         android:layout_width="wrap_content"
+
+         android:layout_height="wrap_content"
+         android:layout_marginStart="32dp"
+         android:layout_marginLeft="32dp"
+         android:layout_marginTop="8dp"
+         android:text="TextView"
+         android:textSize="24sp"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/u_profession" />
+
+     <TextView
+         android:id="@+id/u_profession"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="32dp"
+         android:layout_marginLeft="32dp"
+         android:layout_marginTop="8dp"
+
+         android:text="TextView"
+         android:textSize="24sp"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/u_age" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

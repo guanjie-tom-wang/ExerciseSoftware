@@ -20,7 +20,7 @@ public class AthletePost  extends AppCompatActivity {
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
         tAthlete=findViewById(R.id.textView2);
-        tAthlete.setText("Entry content which you want to post");
+        tAthlete.setText("Please enter the content you want to post");
         bAthlete=findViewById(R.id.button6);
         final Intent i=new Intent(AthletePost.this,landing_login.class);
         bAthlete.setOnClickListener(new View.OnClickListener() {
