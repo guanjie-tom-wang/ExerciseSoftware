@@ -15,19 +15,19 @@ public class User {
     public int weight;
     public int age;
     public int stepnumber;
-    public User(String Un,String TN,String HAD,String ED,String pw,String t, ArrayList<String> fq, ArrayList<String> fl,int h,int w,int a,int s){
-        username=Un;
-        TelNumber=TN;
-        homeAddress=HAD;
-        emailAddress=ED;
-        password=pw;
-        friend_request=fq;
-        friend_list=fl;
-        type=t;
-        height=h;
-        weight=w;
-        age=a;
-        stepnumber=s;
+    public User(String username,String TelNumber,String homeAddress,String emailAddress,String password,String type, ArrayList<String> friend_request, ArrayList<String> friend_list,int height,int weight,int age,int stepnumber){
+        this.username=username;
+        this.TelNumber=TelNumber;
+        this.homeAddress=homeAddress;
+        this.emailAddress=emailAddress;
+        this.password=password;
+        this.friend_request=friend_request;
+        this.friend_list=friend_list;
+        this. type=type;
+        this.height=height;
+        this.weight=weight;
+        this.age=age;
+        this.stepnumber=stepnumber;
     }
 
 }
