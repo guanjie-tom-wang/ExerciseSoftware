@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    Button btn, add,post;
+    Button btn, post, steps;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,16 @@ public class landing_login extends AppCompatActivity {
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
+
         setTitle("Welcome "+user_type+ " !");
 
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
-
-        //tv.setText("Welcome, "+user_type+" "+user_name+"!\n You can view your tasks from your coach by clicking Post.");
+        steps = findViewById(R.id.steps);
+        if(user_type.equals("coach")){
+            steps.setVisibility(View.INVISIBLE);
+        }
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
 
@@ -47,6 +50,16 @@ public class landing_login extends AppCompatActivity {
                 contact.putExtra("User_Name", user_name);
                 contact.putExtra("User_Type", user_type);
                 startActivity(contact);
+                finish();
+            }
+        });
+        final Intent step=new Intent(landing_login.this, StepCounter.class);
+        steps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                step.putExtra("User_Name", user_name);
+                step.putExtra("User_Type", user_type);
+                startActivity(step);
                 finish();
             }
         });
@@ -68,6 +81,7 @@ public class landing_login extends AppCompatActivity {
                         assert str9 != null;
                         str9=str9.toLowerCase();//make all type tp lower case
                         if (str9.equals("coach")) {
+
                             tv.setText("Welcome, "+user_type+" "+user_name+"!\n You can send task to an athlete by clicking Post.");
                             post.setOnClickListener(new View.OnClickListener() {
                                 @Override

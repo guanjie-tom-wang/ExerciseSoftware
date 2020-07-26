@@ -27,22 +27,8 @@ public class CoachPostTest {
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class);
 
     @Test
-    public void testNoFriendsAdded() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("999@qq.com"));
-        Espresso.closeSoftKeyboard();
-        onView(withId(R.id.password)).perform(typeText("123456"));
-        Espresso.closeSoftKeyboard();
-        onView(withId(R.id.btn_login)).perform(click());
-        Thread.sleep(3000);
-        onView(withId(R.id.post)).perform(click());
-        onView(withId(R.id.friends_spinner)).perform(click());
-        onData(anything()).atPosition(0).perform(click());
-        Thread.sleep(300);
-        onView(withId(R.id.friends_spinner)).check(matches(withSpinnerText(containsString("You have no friends yet, go add one!"))));
-    }
-    @Test
     public void testSpinnerFriendList() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("98123@dal.ca"));
+        onView(withId(R.id.username)).perform(typeText("test3@test.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
@@ -60,7 +46,7 @@ public class CoachPostTest {
 
     @Test
     public void testPostContentView() throws InterruptedException {
-        onView(withId(R.id.username)).perform(typeText("98123@dal.ca"));
+        onView(withId(R.id.username)).perform(typeText("test3@test.com"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText("123456"));
         Espresso.closeSoftKeyboard();
