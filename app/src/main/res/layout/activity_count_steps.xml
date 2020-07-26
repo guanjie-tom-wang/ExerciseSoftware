@@ -6,26 +6,37 @@
     android:layout_height="match_parent">
 
 
-
     <TextView
         android:id="@+id/tv_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        />
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total_steps_is" />
 
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start" />
+        android:text="@string/start" />
 
     <Button
         android:id="@+id/btn_stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stop"
+        android:text="@string/stop"
         />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back" />
+
 
 </LinearLayout>

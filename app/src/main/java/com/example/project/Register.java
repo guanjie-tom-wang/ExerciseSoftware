@@ -95,6 +95,7 @@ public class Register extends AppCompatActivity {
         final String phoneNumber = phone.getText().toString();
         final String addressText = address.getText().toString();
         final String email_address = email.getText().toString();
+        final int stepN=0;
         final ArrayList<String> friend_request=new ArrayList<String>() ;
         final ArrayList<String> friend_list=new ArrayList<String>() ;
 
@@ -150,7 +151,7 @@ public class Register extends AppCompatActivity {
 
                                         userinfo = new User(username+"",phoneNumber+"",addressText+"," +
                                                 "", email_address+"",passText+"", roleText+"", friend_request, friend_list, Integer.parseInt(heightNum),
-                                                Integer.parseInt(weightNum),Integer.parseInt(ageNum));
+                                                Integer.parseInt(weightNum),Integer.parseInt(ageNum),stepN);
                                         ref.set(userinfo);
 
                                         // Successful Message
