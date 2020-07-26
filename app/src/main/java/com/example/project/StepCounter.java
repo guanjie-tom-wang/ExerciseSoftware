@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class StepCounter extends AppCompatActivity implements SensorEventListener, StepListener {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth RegisterUser = FirebaseAuth.getInstance();
+    // Set the delay to make the step counter less sensitive
     private long lastStepTimeNs = 0;
     private static final int STEP_DELAY_NS = 250000000;
     private SensorManager sensorManager;
@@ -63,7 +64,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
             }
         });
-
+// Start training
         start.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,6 +76,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
             }
         });
 
+// End of training
 
         stop.setOnClickListener(new View.OnClickListener() {
 
@@ -108,6 +110,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        // This part of code is used to count an actual step based on the x,y and z axis in the emulator.
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             if((event.values[0]>0.5 || event.values[0]<-0.5 ||event.values[2]>1 || event.values[2]<-1)
                     && event.timestamp - lastStepTimeNs > STEP_DELAY_NS) {
