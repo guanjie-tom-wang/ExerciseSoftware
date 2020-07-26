@@ -37,6 +37,9 @@ public class landing_login extends AppCompatActivity {
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
+        if(user_type.equals("coach")){
+            steps.setVisibility(View.INVISIBLE);
+        }
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
 
