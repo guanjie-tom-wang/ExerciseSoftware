@@ -55,7 +55,7 @@ public class check_friend_request extends AppCompatActivity {
         b_decline=findViewById(R.id.button_decline);
         b_to_main=findViewById(R.id.back_from_request);
         mAuth = FirebaseAuth.getInstance();
-        final Intent i=new Intent(check_friend_request.this,landing_login.class);
+        final Intent i=new Intent(check_friend_request.this,display_friend_list.class);
         //search the database based on username
         DocumentReference noteRef= db.collection("Users").document(user_name);
 
@@ -63,22 +63,8 @@ public class check_friend_request extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //check the value of friend_request_from
                         friend_request= (ArrayList<String>) documentSnapshot.get("friend_request");
-                        //if there is a request, display it to user
-                        if(friend_request.size()>0) {
-                            b_accept.setVisibility(View.VISIBLE);
-                            b_decline.setVisibility(View.VISIBLE);
-                            request_message.setText("Hello " + user_name + ", You have a new friend request from: " + friend_request.get(0) + ".");
-
-                        }
-                        //if there is no request, display a message to the user.
-                        else{
-
-                            request_message.setText("Hello " + user_name + ", You have no friend request now. " );
-
-                        }
-
+                        check_request(friend_request, user_name);
                     }
 
                 });
@@ -154,6 +140,24 @@ public class check_friend_request extends AppCompatActivity {
                     }
                 });
     }
+    //method for accept or delcine the request
+    public void check_request(ArrayList<String> friend_request, String user_name){
+
+            //if there is a request, display it to user
+            if(friend_request.size()>0) {
+                b_accept.setVisibility(View.VISIBLE);
+                b_decline.setVisibility(View.VISIBLE);
+                request_message.setText("Hello " + user_name + ", You have a new friend request from: " + friend_request.get(0) + ".");
+
+            }
+            //if there is no request, display a message to the user.
+            else{
+
+                request_message.setText("Hello " + user_name + ", You have no friend request now. " );
+
+            }
+
+        }
 
 
 
