@@ -83,18 +83,20 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
             @Override
             public void onClick(View arg0) {
                 stepInfo.setText("Training completed!");
-                tv1.setText("Training completed! The total number of steps is:"+numSteps);
+                tv1.setText("Training completed! The total number of steps is:" + numSteps);
                 sensorManager.unregisterListener(StepCounter.this);
                 DocumentReference ref = db.collection("Users").document(user_name + "");
-                ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentReference update = FirebaseFirestore.getInstance().collection("Users").document(user_name);
-                            update.update("stepnumber", numSteps);
+                if (user_name!=null) {
+                    ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentReference update = FirebaseFirestore.getInstance().collection("Users").document(user_name);
+                                update.update("stepnumber", numSteps);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 
