@@ -30,15 +30,16 @@ public class landing_login extends AppCompatActivity {
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
-        if(user_type.equals("coach")){
-            steps.setVisibility(View.INVISIBLE);
-        }
+
         setTitle("Welcome "+user_type+ " !");
 
         tv=findViewById(R.id.welcomeBox);
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
+        if(user_type.equals("coach")){
+            steps.setVisibility(View.INVISIBLE);
+        }
         final Intent contact=new Intent(landing_login.this, display_friend_list.class);
 
 
