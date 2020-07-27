@@ -65,11 +65,14 @@ public class landing_login extends AppCompatActivity {
                 finish();
             }
         });
-
+        final Intent athleteView=new Intent(landing_login.this, ViewAthlete.class);
         athlete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ViewAthlete.class));
+                athleteView.putExtra("User_Name", user_name);
+                athleteView.putExtra("User_Type", user_type);
+                startActivity(athleteView);
+                finish();
             }
         });
 
