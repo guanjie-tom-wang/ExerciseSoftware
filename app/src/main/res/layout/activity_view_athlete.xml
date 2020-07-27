@@ -7,6 +7,13 @@
         android:id="@+id/al_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alwaysDrawnWithCache="true"/>
+        android:alwaysDrawnWithCache="true" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="640dp"
+        android:text="@string/back" />
 
 </RelativeLayout>

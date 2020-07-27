@@ -34,4 +34,7 @@
     <string name="stop">Stop</string>
     <string name="back">Back</string>
     <string name="total_steps_is">Total Steps is:</string>
+    <string name="Post">Post</string>
+    <string name="start_training">Start training</string>
+    <string name="view_friends">View Friends</string>
 </resources>

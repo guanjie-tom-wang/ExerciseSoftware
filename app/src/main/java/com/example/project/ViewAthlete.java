@@ -1,9 +1,11 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ViewAthlete extends AppCompatActivity {
     private RecyclerView view;
     private FirebaseFirestore db;
+    private Button back;
 
     private FirestoreRecyclerAdapter<User, ViewAthleteBinder> adapter;
     @Override
@@ -29,8 +32,22 @@ public class ViewAthlete extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         view = findViewById(R.id.al_list);
+        back=findViewById(R.id.button7);
         view.setLayoutManager(new LinearLayoutManager(this));
+        //back to main intent
+        Intent intent = getIntent();
+        final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
+        final Intent i=new Intent(ViewAthlete.this, landing_login.class);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
+                startActivity(i);
+            }
+        });
         Query query = db.collection("Users").whereEqualTo("type", "athlete");
         FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
                 .setQuery(query, User.class)
