@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    Button btn, post, steps;
+    Button btn, post, steps, athlete;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class landing_login extends AppCompatActivity {
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
+        athlete = findViewById(R.id.athletes);
+
         if(user_type.equals("coach")){
             steps.setVisibility(View.INVISIBLE);
         }
@@ -61,6 +63,13 @@ public class landing_login extends AppCompatActivity {
                 step.putExtra("User_Type", user_type);
                 startActivity(step);
                 finish();
+            }
+        });
+
+        athlete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ViewAthlete.class));
             }
         });
 

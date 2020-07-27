@@ -15,6 +15,11 @@ public class User {
     public int weight;
     public int age;
     public int stepnumber;
+
+    public User(){
+
+    }
+
     public User(String username,String TelNumber,String homeAddress,String emailAddress,String password,String type, ArrayList<String> friend_request, ArrayList<String> friend_list,int height,int weight,int age,int stepnumber){
         this.username=username;
         this.TelNumber=TelNumber;
