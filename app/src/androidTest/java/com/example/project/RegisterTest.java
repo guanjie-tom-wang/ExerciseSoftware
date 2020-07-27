@@ -1,9 +1,7 @@
 package com.example.project;
 
-import android.content.Context;
 
 import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Rule;

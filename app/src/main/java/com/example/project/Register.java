@@ -28,8 +28,9 @@ public class Register extends AppCompatActivity {
 
     // Set all objects that will be used
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth RegisterUser = FirebaseAuth.getInstance();
-    private TextView error_msg;
+    FirebaseAuth registerUser = FirebaseAuth.getInstance();
+    ValidateData validator = new ValidateData();
+    private TextView errorMsg;
     private EditText usr;
     private EditText email;
     private EditText pass;
@@ -47,8 +48,8 @@ public class Register extends AppCompatActivity {
 
         // Initialize variables
         db = FirebaseFirestore.getInstance();
-        RegisterUser = FirebaseAuth.getInstance();
-        error_msg = findViewById(R.id.errorInfo);
+        registerUser = FirebaseAuth.getInstance();
+        errorMsg = findViewById(R.id.errorInfo);
         phone = findViewById(R.id.telnumber);
         address = findViewById(R.id.address);
         usr = findViewById(R.id.username);
@@ -60,6 +61,7 @@ public class Register extends AppCompatActivity {
         role = findViewById(R.id.role);
         Button register_button = findViewById(R.id.register);
         TextView return_to_main = findViewById(R.id.log);
+
 
         // When user click the button, start register
         register_button.setOnClickListener(new View.OnClickListener(){
@@ -99,52 +101,27 @@ public class Register extends AppCompatActivity {
         final ArrayList<String> friend_request=new ArrayList<String>() ;
         final ArrayList<String> friend_list=new ArrayList<String>() ;
 
-        String regex_email = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        String regex_digit = "^\\d+";
-        String error = "";
-
         /* Check the input. Int field can only accept digits, username and email follow the
          * instruction in A2. Home address and tel number can be empty.
          */
 
-        if ( passText.isEmpty()) {
-            error = error+"- Invalid password!\n";
-        }
-        if( roleText.isEmpty() ){
-            error = error + "- Invalid role!\n";
-        }
-        if(!ageNum.matches((regex_digit))){
-            error = error + "- Invalid age!\n";
-        }
-        if(!weightNum.matches((regex_digit))){
-            error = error + "- Invalid weight!\n";
-        }
-        if(!heightNum.matches((regex_digit))){
-            error = error + "- Invalid height!\n";
-        }
-        if ( username.isEmpty() || username.charAt(0)== ' ' || username.charAt(username.length() - 1) == ' ') {
-            error = error + "- Invalid username!\n";
-
-        }
-        if (!email_address.matches(regex_email)) {
-            error = error + "- Invalid email format!\n";
-        }
+        String error = validator.validateRegisterFields(passText,roleText,ageNum,weightNum,heightNum,username,email_address);
 
 
-        // If there is an error, show the message
+        // Validate the error message. If it is not empty, then we show the message
         if(!error.isEmpty()) {
-            error_msg.setVisibility(View.VISIBLE);
-            error_msg.setText(error);
-            error_msg.setTextColor(Color.RED);
+            errorMsg.setVisibility(View.VISIBLE);
+            errorMsg.setText(error);
+            errorMsg.setTextColor(Color.RED);
         }
         else {
             // If user register successfully, add his or her information into Firestore
-            RegisterUser.createUserWithEmailAndPassword(email_address+"", passText+"")
+            registerUser.createUserWithEmailAndPassword(email_address+"", passText+"")
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
-                                        error_msg.setText("");
+                                        errorMsg.setText("");
                                         DocumentReference ref= db.collection("Users").document(username+"");
                                         User userinfo;
 
