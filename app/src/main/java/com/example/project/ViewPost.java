@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,18 +28,21 @@ public class ViewPost extends AppCompatActivity {
     ArrayList<Post> list;
     FirebaseFirestore db;
     RecyclerView.LayoutManager layoutManager;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
-
+        Intent intent = getIntent();
+        final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
         recyclerView = findViewById(R.id.view_rv);
         list = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        back=findViewById(R.id.button5);
         db.collection("Posts")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -56,6 +62,18 @@ public class ViewPost extends AppCompatActivity {
                         }
                     }
                 });
+        final Intent i=new Intent(ViewPost.this, landing_login.class);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
+                startActivity(i);
+
+
+
+            }
+        });
     }
 }
