@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this, "One or more field is incorrect"
                             , Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
             }
         });

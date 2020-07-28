@@ -29,6 +29,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.title.setText(list.get(position).getTitle());
         holder.content.setText(list.get(position).getContent());
+        holder.date.setText(list.get(position).date);
     }
 
     @Override
@@ -37,11 +38,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title, content;
+        TextView title, content, date;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.view_title);
             content = itemView.findViewById(R.id.view_content);
+            date = itemView.findViewById(R.id.view_date);
         }
     }
 }

@@ -15,11 +15,13 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -43,20 +45,39 @@ public class ViewPost extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         back=findViewById(R.id.button5);
-        db.collection("Posts")
+        db.collection("Users").document(user_name)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Log.d("view", document.getId() + " => " + document.getData());
-                                Map<String, Object> map = document.getData();
-                                list.add(new Post((String)map.get("title"), (String)map.get("content")));
+                            if(task.getResult().contains("posts")){
+                                List<Map<String, Object>> posts = (List<Map<String, Object>>) task.getResult().get("posts");
+                                for(Map<String, Object> m : posts){
+                                    String date = "";
+                                    String title = "";
+                                    String content = "";
+                                    if(m.containsKey("day")){
+                                        date += String.valueOf(m.get("date"));
+                                    }
+                                    if(m.containsKey("month")){
+                                        date += String.valueOf(m.get("month"));
+                                    }
+                                    if(m.containsKey("year")){
+                                        date += String.valueOf(m.get("year"));
+                                    }
+                                    if(m.containsKey("author")){
+                                        title = (String) m.get("author");
+                                    }
+                                    if(m.containsKey("content")){
+                                        content = (String) m.get("content");
+                                    }
+                                    list.add(new Post(title, content, date));
+                                }
+                                PostAdapter postAdapter = new PostAdapter(list);
+                                recyclerView.setAdapter(postAdapter);
                             }
-                            PostAdapter postAdapter = new PostAdapter(list);
-                            recyclerView.setAdapter(postAdapter);
+
                         } else {
                             Log.w("view", "Error getting documents.", task.getException());
                         }

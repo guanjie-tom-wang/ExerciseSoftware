@@ -9,13 +9,25 @@ import android.widget.Button;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.google.android.gms.tasks.Tasks.await;
 
 public class ViewAthlete extends AppCompatActivity {
     private RecyclerView view;
@@ -48,7 +60,11 @@ public class ViewAthlete extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        Query query = db.collection("Users").whereEqualTo("type", "athlete");
+        ArrayList<String> friends = intent.getStringArrayListExtra("friends");
+
+        Query query = db.collection("Users")
+                .whereIn("username", friends)
+                .whereEqualTo("type", "athlete");
         FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
                 .setQuery(query, User.class)
                 .build();

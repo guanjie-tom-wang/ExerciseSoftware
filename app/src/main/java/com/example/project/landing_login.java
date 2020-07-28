@@ -9,10 +9,13 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 
 public class landing_login extends AppCompatActivity {
@@ -70,8 +73,21 @@ public class landing_login extends AppCompatActivity {
             public void onClick(View view) {
                 athleteView.putExtra("User_Name", user_name);
                 athleteView.putExtra("User_Type", user_type);
-                startActivity(athleteView);
-                finish();
+                final ArrayList<String> friends = new ArrayList<>();
+
+                db.collection("Users").document(user_name).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User user = documentSnapshot.toObject(User.class);
+                        friends.addAll(user.friend_list);
+                        athleteView.putStringArrayListExtra("friends", friends);
+                        startActivity(athleteView);
+                        finish();
+                    }
+                });
+
+
             }
         });
 
