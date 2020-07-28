@@ -1,6 +1,5 @@
 package com.example.project;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,22 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.protobuf.StringValue;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-public class display_friend_list extends AppCompatActivity {
+public class DisplayFriendList extends AppCompatActivity {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     RecyclerView rv;
     private Button add, check, back;
@@ -42,7 +33,7 @@ public class display_friend_list extends AppCompatActivity {
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
-        final Intent contact=new Intent(display_friend_list.this, search_and_send_page.class);
+        final Intent contact=new Intent(DisplayFriendList.this, SearchAndSend.class);
 
         //start a new activity when click button
         add.setOnClickListener(new View.OnClickListener(){
@@ -56,7 +47,7 @@ public class display_friend_list extends AppCompatActivity {
             }
         });
 
-        final Intent request=new Intent(display_friend_list.this, check_friend_request.class);
+        final Intent request=new Intent(DisplayFriendList.this, CheckFriendRequest.class);
         check.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -68,7 +59,7 @@ public class display_friend_list extends AppCompatActivity {
             }
         });
         //back to main page, and display a hello message to the user.
-        final Intent i=new Intent(display_friend_list.this,landing_login.class);
+        final Intent i=new Intent(DisplayFriendList.this,landing_login.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +84,9 @@ public class display_friend_list extends AppCompatActivity {
                             friend_list = (ArrayList<String>) documentSnapshot.get("friend_list");
 
                             rv = (RecyclerView) findViewById(R.id.rv);
-                            rv.setLayoutManager(new LinearLayoutManager(display_friend_list.this));
+                            rv.setLayoutManager(new LinearLayoutManager(DisplayFriendList.this));
 
-                            MyAdapter adapter = new MyAdapter(display_friend_list.this, friend_list);
+                            MyAdapter adapter = new MyAdapter(DisplayFriendList.this, friend_list);
                             rv.setAdapter(adapter);
                         }
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,7 +41,7 @@ public class landing_login extends AppCompatActivity {
         if(user_type.equals("coach")){
             steps.setVisibility(View.INVISIBLE);
         }
-        final Intent contact=new Intent(landing_login.this, display_friend_list.class);
+        final Intent contact=new Intent(landing_login.this, DisplayFriendList.class);
 
 
         //start a new activity when click button
@@ -78,7 +77,7 @@ public class landing_login extends AppCompatActivity {
 
 
         //create intents to different file for different type
-        final Intent coachpost= new Intent(landing_login.this, AddPost.class);
+        final Intent coachpost= new Intent(landing_login.this, CoachPost.class);
         final Intent athletepost= new Intent(landing_login.this, ViewPost.class);
         final Intent userTypeWrong= new Intent(landing_login.this, userTypeWrong.class);
         //get user information
@@ -103,7 +102,6 @@ public class landing_login extends AppCompatActivity {
 
                                     startActivity(coachpost);
                                     finish();
-                                    Toast.makeText(landing_login.this, "Entry content which you want to post", Toast.LENGTH_LONG).show();
                                 }
                             });
                         } else if (str9.equals("athlete")) {
@@ -115,7 +113,6 @@ public class landing_login extends AppCompatActivity {
                                     athletepost.putExtra("User_Type",user_type);
                                     startActivity(athletepost);
                                     finish();
-                                    Toast.makeText(landing_login.this, "Your tasks are shown above ", Toast.LENGTH_LONG).show();
                                 }
                             });
                         } else {

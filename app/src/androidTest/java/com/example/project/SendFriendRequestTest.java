@@ -14,7 +14,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class SendFriendRequestTest {
     @Rule
-    public ActivityTestRule<search_and_send_page> mActivityTestRule = new ActivityTestRule<search_and_send_page>(search_and_send_page.class);
+    public ActivityTestRule<SearchAndSend> mActivityTestRule = new ActivityTestRule<SearchAndSend>(SearchAndSend.class);
 
 
     @Test

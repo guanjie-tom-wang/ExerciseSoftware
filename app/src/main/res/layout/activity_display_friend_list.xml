@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:paddingRight="10dp"
-    tools:context=".display_friend_list">
+    tools:context=".DisplayFriendList">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"

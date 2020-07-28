@@ -11,7 +11,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_rv"
         android:layout_width="411dp"
-        android:layout_height="618dp"
+        android:layout_height="652dp"
         android:layout_margin="5dp"
         android:scrollbars="vertical" />
 
@@ -19,7 +19,8 @@
         android:id="@+id/button5"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="Back"
+        android:visibility="visible" />
 
 
 </LinearLayout>

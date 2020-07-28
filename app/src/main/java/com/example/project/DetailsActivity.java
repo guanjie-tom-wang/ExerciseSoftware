@@ -26,34 +26,37 @@ public class DetailsActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     String n, profession="", email="";
     Long age;
-    private  CollectionReference noteRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set the title of the page
         setTitle("Friend Personal Info");
+
         setContentView(R.layout.activity_details);
         name = findViewById(R.id.u_name);
         u_age = findViewById(R.id.u_age);
         u_profession= findViewById(R.id.u_profession);
         u_email = findViewById(R.id.u_email);
+        //get the name of the friend
         n = getIntent().getStringExtra("name");
         name.setText("Name: " + n);
         DocumentReference noteRef= db.collection("Users").document(n);
+
         //Query the database according the name of the friend
         noteRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //get email address
+                        //get and set email address
                         email=(String) documentSnapshot.getData().get("emailAddress");
                         u_email.setText("Email address: "+email);
 
-                        //get profession
+                        //get and set profession
                         profession=(String) documentSnapshot.getData().get("type");
                         u_profession.setText("Profession: "+profession);
 
-                        //get age
+                        //get and set age
                         age=(Long) documentSnapshot.getData().get("age");
                         u_age.setText("Age:"+age);
                     }

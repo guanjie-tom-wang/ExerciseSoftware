@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,10 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class check_friend_request extends AppCompatActivity {
+public class CheckFriendRequest extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth RegisterUser = FirebaseAuth.getInstance();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private TextView request_message;
 
     //button for accept and decline
@@ -36,9 +34,7 @@ public class check_friend_request extends AppCompatActivity {
 
     //button to go back to main page
     private Button b_to_main;
-    private FirebaseAuth mAuth;
     ArrayList<String> friend_request;
-    ArrayList<String> friend_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +50,7 @@ public class check_friend_request extends AppCompatActivity {
         b_accept= findViewById(R.id.button_accept);
         b_decline=findViewById(R.id.button_decline);
         b_to_main=findViewById(R.id.back_from_request);
-        mAuth = FirebaseAuth.getInstance();
-        final Intent i=new Intent(check_friend_request.this,display_friend_list.class);
+        final Intent i=new Intent(CheckFriendRequest.this, DisplayFriendList.class);
         //search the database based on username
         DocumentReference noteRef= db.collection("Users").document(user_name);
 
@@ -92,7 +87,7 @@ public class check_friend_request extends AppCompatActivity {
         });
 
         //back to main page, and display a hello message to the user.
-        final Intent contact=new Intent(check_friend_request.this,display_friend_list.class);
+        final Intent contact=new Intent(CheckFriendRequest.this, DisplayFriendList.class);
 
         b_to_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +114,7 @@ public class check_friend_request extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(check_friend_request.this, "Request Accepted"
+                        Toast.makeText(CheckFriendRequest.this, "Request Accepted"
                                 , Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -135,7 +130,7 @@ public class check_friend_request extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(check_friend_request.this, "Request Declined"
+                        Toast.makeText(CheckFriendRequest.this, "Request Declined"
                                 , Toast.LENGTH_SHORT).show();
                     }
                 });

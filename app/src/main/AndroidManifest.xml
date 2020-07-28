@@ -14,13 +14,13 @@
         <activity android:name=".AddPost" />
         <activity android:name=".DetailsActivity" />
         <activity
-            android:name=".check_friend_request"
+            android:name=".CheckFriendRequest"
             tools:ignore="MissingClass" />
-        <activity android:name=".search_and_send_page" />
+        <activity android:name=".SearchAndSend" />
         <activity android:name=".StepCounter" />
         <activity android:name=".CoachPost">
         </activity>
-        <activity android:name=".display_friend_list">
+        <activity android:name=".DisplayFriendList">
         </activity>
         <activity android:name=".landing_login" />
         <activity android:name=".MainActivity" />

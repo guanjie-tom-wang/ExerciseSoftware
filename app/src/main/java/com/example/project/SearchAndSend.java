@@ -27,7 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 
-public class search_and_send_page extends AppCompatActivity {
+public class SearchAndSend extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -51,8 +51,8 @@ public class search_and_send_page extends AppCompatActivity {
         back = findViewById(R.id.back);
 
         Intent intent = getIntent();
-        final Intent i=new Intent(search_and_send_page.this,landing_login.class);
-        final Intent contact=new Intent(search_and_send_page.this,display_friend_list.class);
+        final Intent i=new Intent(SearchAndSend.this,landing_login.class);
+        final Intent contact=new Intent(SearchAndSend.this, DisplayFriendList.class);
 
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
@@ -88,7 +88,7 @@ public class search_and_send_page extends AppCompatActivity {
 
     public void validate_email() {
         if (input_email.getText().toString().isEmpty()) {
-            Toast.makeText(search_and_send_page.this, "Please enter something", Toast.LENGTH_LONG).show();
+            Toast.makeText(SearchAndSend.this, "Please enter something", Toast.LENGTH_LONG).show();
         }
         else {
             noteRef = db.collection("Users");
@@ -97,7 +97,7 @@ public class search_and_send_page extends AppCompatActivity {
             Query query = noteRef.whereEqualTo("emailAddress", input_email.getText().toString());
 
             if (query == null) {
-                Toast.makeText(search_and_send_page.this, "there is no email in your group, please input", Toast.LENGTH_LONG).show();
+                Toast.makeText(SearchAndSend.this, "there is no email in your group, please input", Toast.LENGTH_LONG).show();
             } else {
                 check_email=true;
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -108,7 +108,7 @@ public class search_and_send_page extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 username_get = (String) document.getData().get("username");
-                                Toast.makeText(search_and_send_page.this, "Email address belongs to: " +username_get , Toast.LENGTH_LONG).show();
+                                Toast.makeText(SearchAndSend.this, "Email address belongs to: " +username_get , Toast.LENGTH_LONG).show();
 
 
                             }
@@ -132,12 +132,12 @@ public class search_and_send_page extends AppCompatActivity {
                             ref.update("friend_request", FieldValue.arrayUnion(user_name)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(search_and_send_page.this, "Request sent!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SearchAndSend.this, "Request sent!", Toast.LENGTH_LONG).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(search_and_send_page.this, "Error! Something goes wrong...", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SearchAndSend.this, "Error! Something goes wrong...", Toast.LENGTH_LONG).show();
                                 }
                             });
                         }
@@ -147,7 +147,7 @@ public class search_and_send_page extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(search_and_send_page.this, "Please input the correct email and check it" , Toast.LENGTH_LONG).show();
+            Toast.makeText(SearchAndSend.this, "Please input the correct email and check it" , Toast.LENGTH_LONG).show();
         }
     }
 }
