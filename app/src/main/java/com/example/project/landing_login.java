@@ -43,6 +43,7 @@ public class landing_login extends AppCompatActivity {
 
         if(user_type.equals("athlete")){
             steps.setText("Start training");
+            athlete.setVisibility(View.INVISIBLE);
         }else{
             steps.setText("View athlete data");
         }
