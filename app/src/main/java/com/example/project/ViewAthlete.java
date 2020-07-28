@@ -61,35 +61,38 @@ public class ViewAthlete extends AppCompatActivity {
             }
         });
         ArrayList<String> friends = intent.getStringArrayListExtra("friends");
+        if(friends != null && friends.size() != 0){
+            Query query = db.collection("Users")
+                    .whereIn("username", friends)
+                    .whereEqualTo("type", "athlete");
+            FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
+                    .setQuery(query, User.class)
+                    .build();
 
-        Query query = db.collection("Users")
-                .whereIn("username", friends)
-                .whereEqualTo("type", "athlete");
-        FirestoreRecyclerOptions<User> options = new FirestoreRecyclerOptions.Builder<User>()
-                .setQuery(query, User.class)
-                .build();
+            adapter = new FirestoreRecyclerAdapter<User, ViewAthleteBinder>(options) {
+                @Override
+                protected void onBindViewHolder(@NonNull ViewAthleteBinder holder, int position, @NonNull User model) {
+                    holder.bind(model);
+                }
 
-        adapter = new FirestoreRecyclerAdapter<User, ViewAthleteBinder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull ViewAthleteBinder holder, int position, @NonNull User model) {
-                holder.bind(model);
-            }
-
-            @NonNull
-            @Override
-            public ViewAthleteBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_allist,
-                        parent, false);
-                return new ViewAthleteBinder(view, getApplicationContext());
-            }
-        };
-        view.setAdapter(adapter);
+                @NonNull
+                @Override
+                public ViewAthleteBinder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_allist,
+                            parent, false);
+                    return new ViewAthleteBinder(view, getApplicationContext());
+                }
+            };
+            view.setAdapter(adapter);
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.startListening();
+        if(adapter != null){
+            adapter.startListening();
+        }
     }
 
     @Override

@@ -9,10 +9,13 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 
 public class landing_login extends AppCompatActivity {
@@ -38,9 +41,12 @@ public class landing_login extends AppCompatActivity {
         steps = findViewById(R.id.steps);
 
 
-        if(user_type.equals("coach")){
-            steps.setVisibility(View.INVISIBLE);
+        if(user_type.equals("athlete")){
+            steps.setText("Start training");
+        }else{
+            steps.setText("View athlete data");
         }
+
         final Intent contact=new Intent(landing_login.this, DisplayFriendList.class);
 
 
@@ -54,14 +60,33 @@ public class landing_login extends AppCompatActivity {
                 finish();
             }
         });
-        final Intent step=new Intent(landing_login.this, StepCounter.class);
+
         steps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                step.putExtra("User_Name", user_name);
-                step.putExtra("User_Type", user_type);
-                startActivity(step);
-                finish();
+                if(user_type.equals("athlete")){
+                    Intent step = new Intent(landing_login.this, StepCounter.class);
+                    step.putExtra("User_Name", user_name);
+                    step.putExtra("User_Type", user_type);
+                    startActivity(step);
+                }else{
+                    db.collection("Users").document(user_name).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Intent step = new Intent(getApplicationContext(), ViewAthlete.class);
+                            step.putExtra("User_Name", user_name);
+                            step.putExtra("User_Type", user_type);
+
+                            User user = documentSnapshot.toObject(User.class);
+                            ArrayList<String> friend_list = new ArrayList<>(user.friend_list);
+                            step.putStringArrayListExtra("friends", friend_list);
+                            startActivity(step);
+                            finish();
+                        }
+                    });
+                }
+
             }
         });
 

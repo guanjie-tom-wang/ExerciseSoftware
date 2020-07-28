@@ -37,4 +37,5 @@
     <string name="Post">Post</string>
     <string name="start_training">Start training</string>
     <string name="view_friends">View Friends</string>
+    <string name="view_athlete_data">View athlete data</string>
 </resources>
