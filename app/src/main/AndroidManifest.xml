@@ -38,7 +38,7 @@
             android:name=".Update"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".AthletePost" />
-        <activity android:name=".userTypeWrong" />
+        <activity android:name=".UserTypeWrong" />
         <activity android:name=".ViewAthlete"/>
         <activity android:name=".AthleteDetail"/>
     </application>

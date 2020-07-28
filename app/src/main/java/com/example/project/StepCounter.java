@@ -32,7 +32,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
     private Sensor accel;
     private int numSteps;
     private TextView stepInfo;
-    private TextView tv1;
+    private TextView finalstepinfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
         accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         stepInfo = findViewById(R.id.tv_steps);
-        tv1 = findViewById(R.id.textView4);
+        finalstepinfo = findViewById(R.id.textView4);
         Button start = findViewById(R.id.btn_start);
         Button stop = findViewById(R.id.btn_stop);
         Button back = findViewById(R.id.button2);
@@ -83,7 +83,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
             @Override
             public void onClick(View arg0) {
                 stepInfo.setText("Training completed!");
-                tv1.setText("Training completed! The total number of steps is:" + numSteps);
+                finalstepinfo.setText("Training completed! The total number of steps is:" + numSteps);
                 sensorManager.unregisterListener(StepCounter.this);
                 DocumentReference ref = db.collection("Users").document(user_name + "");
                 if (user_name!=null) {

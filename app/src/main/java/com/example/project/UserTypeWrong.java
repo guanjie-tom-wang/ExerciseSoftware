@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
-public class userTypeWrong extends AppCompatActivity {
+public class UserTypeWrong extends AppCompatActivity {
     private TextView t1;
     private Button b1;
     @Override
