@@ -40,10 +40,9 @@ public class landing_login extends AppCompatActivity {
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
         athlete = findViewById(R.id.athletes);
-
+        athlete.setVisibility(View.INVISIBLE);
         if(user_type.equals("athlete")){
             steps.setText("Start training");
-            athlete.setVisibility(View.INVISIBLE);
         }else{
             steps.setText("View athlete data");
         }
