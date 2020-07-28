@@ -1,7 +1,6 @@
 package com.example.project;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,13 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class ViewPost extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -58,19 +55,19 @@ public class ViewPost extends AppCompatActivity {
                                     String title = "";
                                     String content = "";
                                     if(m.containsKey("day")){
-                                        date += String.valueOf(m.get("date"));
+                                        date += "Date: "+ String.valueOf(m.get("day"));
                                     }
                                     if(m.containsKey("month")){
-                                        date += String.valueOf(m.get("month"));
+                                        date += "-" + String.valueOf(m.get("month"));
                                     }
                                     if(m.containsKey("year")){
-                                        date += String.valueOf(m.get("year"));
+                                        date += "-" + String.valueOf(m.get("year"));
                                     }
                                     if(m.containsKey("author")){
-                                        title = (String) m.get("author");
+                                        title = "From:"+(String) m.get("author")+"\n";
                                     }
                                     if(m.containsKey("content")){
-                                        content = (String) m.get("content");
+                                        content = "Task content:" + (String) m.get("content")+"\n";
                                     }
                                     list.add(new Post(title, content, date));
                                 }
