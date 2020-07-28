@@ -9,15 +9,18 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 
 public class landing_login extends AppCompatActivity {
     TextView tv;
-    Button btn, post, steps;
+    Button btn, post, steps, athlete;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class landing_login extends AppCompatActivity {
         btn=findViewById(R.id.contacts);
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
-
+        athlete = findViewById(R.id.athletes);
 
         if(user_type.equals("coach")){
             steps.setVisibility(View.INVISIBLE);
@@ -64,7 +67,29 @@ public class landing_login extends AppCompatActivity {
                 finish();
             }
         });
+       final Intent athleteView=new Intent(landing_login.this, ViewAthlete.class);
+        athlete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                athleteView.putExtra("User_Name", user_name);
+                athleteView.putExtra("User_Type", user_type);
+                final ArrayList<String> friends = new ArrayList<>();
 
+                db.collection("Users").document(user_name).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                User user = documentSnapshot.toObject(User.class);
+                                friends.addAll(user.friend_list);
+                                athleteView.putStringArrayListExtra("friends", friends);
+                                startActivity(athleteView);
+                                finish();
+                            }
+                        });
+
+
+            }
+        });
         //create intents to different file for different type
         final Intent coachpost= new Intent(landing_login.this, CoachPost.class);
         final Intent athletepost= new Intent(landing_login.this, ViewPost.class);
