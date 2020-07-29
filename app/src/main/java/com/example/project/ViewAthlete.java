@@ -50,7 +50,7 @@ public class ViewAthlete extends AppCompatActivity {
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra("User_Name");
         final String user_type = intent.getStringExtra("User_Type");
-        final Intent i=new Intent(ViewAthlete.this, landing_login.class);
+        final Intent i=new Intent(ViewAthlete.this, LandingLogin.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

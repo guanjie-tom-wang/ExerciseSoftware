@@ -18,9 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 
-public class landing_login extends AppCompatActivity {
+public class LandingLogin extends AppCompatActivity {
     TextView tv;
-    Button btn, post, steps, athlete;
+    Button btn_contact, post, steps, athlete;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class landing_login extends AppCompatActivity {
         setTitle("Welcome "+user_type+ " !");
 
         tv=findViewById(R.id.welcomeBox);
-        btn=findViewById(R.id.contacts);
+        btn_contact =findViewById(R.id.contacts);
         post = findViewById(R.id.post);
         steps = findViewById(R.id.steps);
         athlete = findViewById(R.id.athletes);
@@ -47,11 +47,11 @@ public class landing_login extends AppCompatActivity {
             steps.setText("View athlete data");
         }
 
-        final Intent contact=new Intent(landing_login.this, DisplayFriendList.class);
+        final Intent contact=new Intent(LandingLogin.this, DisplayFriendList.class);
 
 
         //start a new activity when click button
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 contact.putExtra("User_Name", user_name);
@@ -65,7 +65,7 @@ public class landing_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(user_type.equals("athlete")){
-                    Intent step = new Intent(landing_login.this, StepCounter.class);
+                    Intent step = new Intent(LandingLogin.this, StepCounter.class);
                     step.putExtra("User_Name", user_name);
                     step.putExtra("User_Type", user_type);
                     startActivity(step);
@@ -89,7 +89,7 @@ public class landing_login extends AppCompatActivity {
 
             }
         });
-       final Intent athleteView=new Intent(landing_login.this, ViewAthlete.class);
+       final Intent athleteView=new Intent(LandingLogin.this, ViewAthlete.class);
         athlete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,9 +113,9 @@ public class landing_login extends AppCompatActivity {
             }
         });
         //create intents to different file for different type
-        final Intent coachpost= new Intent(landing_login.this, CoachPost.class);
-        final Intent athletepost= new Intent(landing_login.this, ViewPost.class);
-        final Intent userTypeWrong= new Intent(landing_login.this, UserTypeWrong.class);
+        final Intent coachpost= new Intent(LandingLogin.this, CoachPost.class);
+        final Intent athletepost= new Intent(LandingLogin.this, ViewPost.class);
+        final Intent userTypeWrong= new Intent(LandingLogin.this, UserTypeWrong.class);
         //get user information
         DocumentReference ref = db.collection("Users").document(user_name + "");
         ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

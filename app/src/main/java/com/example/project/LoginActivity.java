@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         // Get user name from the textview
         final String uName = username.getText().toString();
         String uPassword = password.getText().toString();
-        final Intent login=new Intent(LoginActivity.this, landing_login.class);
+        final Intent login=new Intent(LoginActivity.this, LandingLogin.class);
         if(uName.length() == 0 || uPassword.length() == 0){
             Toast.makeText(this, "One or more of the field is Empty",
                     Toast.LENGTH_SHORT).show();

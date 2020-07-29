@@ -61,7 +61,7 @@ public class CoachPost extends AppCompatActivity {
         final String user_type = intent.getStringExtra("User_Type");
 
         final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
-        final Intent i2=new Intent(CoachPost.this,landing_login.class);
+        final Intent i2=new Intent(CoachPost.this,LandingLogin.class);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class CoachPost extends AppCompatActivity {
                 startActivity(i2);
             }
         });
-        final Intent i=new Intent(CoachPost.this,landing_login.class);
+        final Intent i=new Intent(CoachPost.this,LandingLogin.class);
 
         return_to_main_button.setOnClickListener(new View.OnClickListener() {
             @Override

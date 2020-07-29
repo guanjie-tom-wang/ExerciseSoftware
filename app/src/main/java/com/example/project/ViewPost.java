@@ -80,7 +80,7 @@ public class ViewPost extends AppCompatActivity {
                         }
                     }
                 });
-        final Intent i=new Intent(ViewPost.this, landing_login.class);
+        final Intent i=new Intent(ViewPost.this, LandingLogin.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -51,7 +51,7 @@ public class SearchAndSend extends AppCompatActivity {
         back = findViewById(R.id.back);
 
         Intent intent = getIntent();
-        final Intent i=new Intent(SearchAndSend.this,landing_login.class);
+        final Intent i=new Intent(SearchAndSend.this,LandingLogin.class);
         final Intent contact=new Intent(SearchAndSend.this, DisplayFriendList.class);
 
         final String user_name = intent.getStringExtra("User_Name");
