@@ -55,7 +55,7 @@ public class landing_login extends AppCompatActivity {
         //create intents to different file for different type
         final Intent coachpost= new Intent(landing_login.this, CoachPost.class);
         final Intent athletepost= new Intent(landing_login.this, AthletePost.class);
-        final Intent userTypeWrong= new Intent(landing_login.this, userTypeWrong.class);
+        final Intent userTypeWrong= new Intent(landing_login.this, UserTypeWrong.class);
         //get user information
         DocumentReference ref = db.collection("Users").document(user_name + "");
         ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
