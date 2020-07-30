@@ -6,6 +6,7 @@ public class PostFromCoach {
     int day;
     int month;
 
+
     public String getTitle() {
         return title;
     }
