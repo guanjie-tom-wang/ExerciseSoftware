@@ -13,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project.StepListener;
-import com.example.project.landing_login;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,7 +49,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
         Button start = findViewById(R.id.btn_start);
         Button stop = findViewById(R.id.btn_stop);
         Button back = findViewById(R.id.button2);
-        final Intent i=new Intent(StepCounter.this, landing_login.class);
+        final Intent i=new Intent(StepCounter.this, LandingLogin.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

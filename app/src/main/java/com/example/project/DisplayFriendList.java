@@ -59,7 +59,7 @@ public class DisplayFriendList extends AppCompatActivity {
             }
         });
         //back to main page, and display a hello message to the user.
-        final Intent i=new Intent(DisplayFriendList.this,landing_login.class);
+        final Intent i=new Intent(DisplayFriendList.this, LandingLogin.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

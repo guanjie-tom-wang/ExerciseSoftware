@@ -9,20 +9,14 @@ import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +55,7 @@ public class CoachPost extends AppCompatActivity {
         final String user_type = intent.getStringExtra("User_Type");
 
         final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
-        final Intent i2=new Intent(CoachPost.this,landing_login.class);
+        final Intent i2=new Intent(CoachPost.this, LandingLogin.class);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +79,7 @@ public class CoachPost extends AppCompatActivity {
                 startActivity(i2);
             }
         });
-        final Intent i=new Intent(CoachPost.this,landing_login.class);
+        final Intent i=new Intent(CoachPost.this, LandingLogin.class);
 
         return_to_main_button.setOnClickListener(new View.OnClickListener() {
             @Override

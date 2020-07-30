@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,7 +79,7 @@ public class ViewPost extends AppCompatActivity {
                         }
                     }
                 });
-        final Intent i=new Intent(ViewPost.this, landing_login.class);
+        final Intent i=new Intent(ViewPost.this, LandingLogin.class);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

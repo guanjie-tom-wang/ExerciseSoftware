@@ -22,7 +22,7 @@ public class AthletePost  extends AppCompatActivity {
         tAthlete=findViewById(R.id.textView2);
         tAthlete.setText("Please enter the content you want to post");
         bAthlete=findViewById(R.id.button6);
-        final Intent i=new Intent(AthletePost.this,landing_login.class);
+        final Intent i=new Intent(AthletePost.this, LandingLogin.class);
         bAthlete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

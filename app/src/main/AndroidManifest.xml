@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".DisplayFriendList">
         </activity>
-        <activity android:name=".landing_login" />
+        <activity android:name=".LandingLogin" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

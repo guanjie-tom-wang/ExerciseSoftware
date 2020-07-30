@@ -57,7 +57,7 @@ public class AddPost extends AppCompatActivity {
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("post", "DocumentSnapshot added with ID: " + documentReference.getId());
                                 Toast.makeText(getApplicationContext(),"Post successfully",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AddPost.this, landing_login.class));
+                                startActivity(new Intent(AddPost.this, LandingLogin.class));
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

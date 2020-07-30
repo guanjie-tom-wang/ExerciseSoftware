@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,14 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -81,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         // Get user name from the textview
         final String uName = username.getText().toString();
         String uPassword = password.getText().toString();
-        final Intent login=new Intent(LoginActivity.this, landing_login.class);
+        final Intent login=new Intent(LoginActivity.this, LandingLogin.class);
         if(uName.length() == 0 || uPassword.length() == 0){
             Toast.makeText(this, "One or more of the field is Empty",
                     Toast.LENGTH_SHORT).show();
