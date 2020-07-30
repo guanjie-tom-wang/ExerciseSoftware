@@ -53,6 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         final String user_name = intent.getStringExtra("User_Name");
+        final String user_type = intent.getStringExtra("User_Type");
         final int  a=intent.getIntExtra("number",0);
         f_list=intent.getStringArrayListExtra("list");
         final Intent i=new Intent(DetailsActivity.this, DisplayFriendList.class);
@@ -61,6 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
                 startActivity(i);
 
             }
