@@ -86,7 +86,7 @@ public class DisplayFriendList extends AppCompatActivity {
                             rv = (RecyclerView) findViewById(R.id.rv);
                             rv.setLayoutManager(new LinearLayoutManager(DisplayFriendList.this));
 
-                            MyAdapter adapter = new MyAdapter(DisplayFriendList.this, friend_list);
+                        MyAdapter adapter = new MyAdapter(DisplayFriendList.this, friend_list,user_name);
                             rv.setAdapter(adapter);
                         }
 

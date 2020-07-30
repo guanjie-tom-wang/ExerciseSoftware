@@ -19,10 +19,15 @@ import static android.content.ContentValues.TAG;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     Context c;
     ArrayList<String> friend_list;
-
+    String user_name;
     public MyAdapter(Context c, ArrayList<String> list) {
         this.c = c;
         this.friend_list = list;
+    }
+    public MyAdapter(Context c, ArrayList<String> list,String user_name) {
+        this.c = c;
+        this.friend_list = list;
+        this.user_name=user_name;
     }
 
     @NonNull
@@ -41,6 +46,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
             public void onClick(View view) {
                 Intent intent=new Intent(c, DetailsActivity.class);
                 intent.putExtra("name",friend_list.get(position));
+                intent.putExtra("User_Name",user_name);
+                intent.putStringArrayListExtra("list",friend_list);
+                intent.putExtra("number",position);
                 c.startActivity(intent);
             }
         });
