@@ -62,8 +62,8 @@ public class ViewPost extends AppCompatActivity {
                                     if(m.containsKey("year")){
                                         date += "-" + String.valueOf(m.get("year"));
                                     }
-                                    if(m.containsKey("author")){
-                                        title = "From:"+(String) m.get("author")+"\n";
+                                    if(m.containsKey("title")){
+                                        title = "From:"+(String) m.get("title")+"\n";
                                     }
                                     if(m.containsKey("content")){
                                         content = "Task content:" + (String) m.get("content")+"\n";

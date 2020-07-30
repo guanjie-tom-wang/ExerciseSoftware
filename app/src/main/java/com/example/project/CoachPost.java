@@ -26,7 +26,7 @@ public class CoachPost extends AppCompatActivity {
     private Button submit;
     private DatePicker simpleDatePicker;
     private EditText coachC;
-    Post p;
+    PostFromCoach p;
     FirebaseFirestore db;
     FirebaseAuth user;
     List<String> friend_list = new ArrayList<>();
@@ -41,7 +41,6 @@ public class CoachPost extends AppCompatActivity {
         submit = findViewById(R.id.post_c);
         coachC=findViewById(R.id.post_content);
         simpleDatePicker = findViewById(R.id.simpleDatePicker);
-        //p= new Post();
 
 
 
@@ -56,41 +55,6 @@ public class CoachPost extends AppCompatActivity {
 
         final Spinner mySpinner = (Spinner) findViewById(R.id.friends_spinner);
         final Intent i2=new Intent(CoachPost.this, LandingLogin.class);
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // get the values for day of month , month and year from a date picker , and content
-                int day = simpleDatePicker.getDayOfMonth();
-                int month = simpleDatePicker.getMonth();
-                int year = simpleDatePicker.getYear();
-                String content =  coachC.getText().toString();
-                //p.setAuthor(user_name);
-                //p.setContent(content);
-                //p.setDay(day);
-                //p.setMonth(month);
-                //p.setYear(year);
-
-                db.collection("Posts").add(p);
-                db.collection("Users").document(user_name).update("posts", FieldValue.arrayUnion(p));
-                System.out.println(user_name+" "+day+" "+content);
-                i2.putExtra("User_Name",user_name);
-                i2.putExtra("User_Type",user_type);
-                startActivity(i2);
-            }
-        });
-        final Intent i=new Intent(CoachPost.this, LandingLogin.class);
-
-        return_to_main_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i.putExtra("User_Name",user_name);
-                i.putExtra("User_Type",user_type);
-                startActivity(i);
-
-            }
-        });
-
         DocumentReference current_user= db.collection("Users").document(user_name);
 
         // Use a spinner to show all the friends of the current user in a dropdown list.
@@ -118,6 +82,45 @@ public class CoachPost extends AppCompatActivity {
                     }
 
                 });
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get the values for day of month , month and year from a date picker , and content
+                int day = simpleDatePicker.getDayOfMonth();
+                int month = simpleDatePicker.getMonth();
+                int year = simpleDatePicker.getYear();
+                String content =  coachC.getText().toString();
+                String athleteName = mySpinner.getSelectedItem().toString();
+                p= new PostFromCoach(user_name,content,day,month,year);
+                p.setTitle(user_name);
+                p.setContent(content);
+                p.setDay(day);
+                p.setMonth(month);
+                p.setYear(year);
+
+                db.collection("Posts").add(p);
+                db.collection("Users").document(athleteName).update("posts", FieldValue.arrayUnion(p));
+                System.out.println(athleteName+" "+day+" "+content);
+                i2.putExtra("User_Name",user_name);
+                i2.putExtra("User_Type",user_type);
+                startActivity(i2);
+            }
+        });
+        final Intent i=new Intent(CoachPost.this, LandingLogin.class);
+
+        return_to_main_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i.putExtra("User_Name",user_name);
+                i.putExtra("User_Type",user_type);
+                startActivity(i);
+
+            }
+        });
+
+
     }
 
 
