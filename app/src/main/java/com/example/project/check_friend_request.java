@@ -116,8 +116,6 @@ public class check_friend_request extends AppCompatActivity {
 
                 startActivity(contact);
 
-
-
             }
         });
     }
@@ -139,6 +137,7 @@ public class check_friend_request extends AppCompatActivity {
                 });
 
     }
+
     //method for decline
     public void onclick_decline(String user_name) {
         DocumentReference update = FirebaseFirestore.getInstance().collection("Users").document(user_name);

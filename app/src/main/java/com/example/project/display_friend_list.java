@@ -76,26 +76,26 @@ public class display_friend_list extends AppCompatActivity {
                 i.putExtra("User_Name",user_name);
                 i.putExtra("User_Type",user_type);
                 startActivity(i);
-
-
-
             }
         });
+
+
+
         //create a recycler view to display all user's friends.
         DocumentReference nRef= db.collection("Users").document(user_name);
-        nRef.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        nRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
                         //check the value of friend_request_from
+
                             friend_list = (ArrayList<String>) documentSnapshot.get("friend_list");
 
                             rv = (RecyclerView) findViewById(R.id.rv);
                             rv.setLayoutManager(new LinearLayoutManager(display_friend_list.this));
 
-                            MyAdapter adapter = new MyAdapter(display_friend_list.this, friend_list);
+                            MyAdapter adapter = new MyAdapter(display_friend_list.this, friend_list,user_name);
                             rv.setAdapter(adapter);
                         }
 
